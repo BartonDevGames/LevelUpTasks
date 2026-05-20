@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <title>LevelUp — Task Tracker</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
@@ -41,6 +41,10 @@ window.dispatchEvent(new Event('fb-ready'));
 </script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
+
+html, body{
+touch-action: manipulation;
+}
 
 :root{
   --bg:#07090f;
@@ -660,7 +664,7 @@ body::after{
 
 <script>
 // ── STATE ──────────────────────────────────────────────────────────
-let tasks=[], streak=0, points=0, level=0;
+let tasks=[], streak=0, points=0, level=1;
 let lastCompleted=null, graceUsed=null, lastReset=null;
 let displayName='';
 let confettiRunning=false;
@@ -720,7 +724,7 @@ function load(){
   const d=JSON.parse(localStorage.getItem('lu')||'null');
   if(!d) return;
   ({displayName,tasks,streak,points,level,lastCompleted,graceUsed,lastReset}=d);
-  tasks=tasks||[];streak=streak||0;points=points||0;level=level||0;
+  tasks=tasks||[];streak=streak||0;points=points||0;level=level||1;
   if(d.theme==='light') document.body.dataset.theme='light';
 }
 
@@ -909,13 +913,15 @@ $('editTaskIn').addEventListener('keydown',e=>{if(e.key==='Enter') $('editTaskOk
 
 // ── STATS + PROGRESS ───────────────────────────────────────────────
 function updateStats(){
-  $('sXP').textContent=points;
-  $('sStreak').textContent=streak;
-  $('sLevel').textContent=level;
+$('sXP').textContent = points;
+$('sStreak').textContent = streak;
+$('sLevel').textContent = level;
 
-  const xpIn=points-(level*XP_LVL);
-  $('xpBar').style.width=Math.round(xpIn/XP_LVL*100)+'%';
-  $('xpVal').textContent=xpIn+' / '+XP_LVL+' XP';
+const xpIn = points % XP_LVL;
+const pct = Math.min(100, Math.round((xpIn / XP_LVL) * 100));
+
+$('xpBar').style.width = pct + '%';
+$('xpVal').textContent = xpIn + ' / ' + XP_LVL + ' XP';
 }
 
 function updateProgress(){
@@ -1021,6 +1027,3 @@ updateAll();
 </script>
 </body>
 </html>
-
-
-
