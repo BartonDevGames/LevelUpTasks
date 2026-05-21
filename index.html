@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <title>Task Tracker - LevelUp</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 import {
@@ -265,6 +265,13 @@ body::after{
   flex-shrink:0;
 }
 
+.sortable-ghost{
+  opacity:0.35;
+}
+
+.sortable-chosen{
+  border-color:var(--cyan)!important;
+}
 
 /* ── REWARD / GRACE / REMINDER ── */
 .reward{
@@ -1116,6 +1123,27 @@ initProfile();
 dailyReset();
 checkGrace();
 updateAll();
+new Sortable(taskList,{
+
+  animation:180,
+
+  handle:'.drag-handle',
+
+  ghostClass:'sortable-ghost',
+
+  chosenClass:'sortable-chosen',
+
+  onEnd:(evt)=>{
+
+    const moved=tasks.splice(evt.oldIndex,1)[0];
+
+    tasks.splice(evt.newIndex,0,moved);
+
+    save();
+
+    toast('Task reordered','g');
+  }
+});
 </script>
 </body>
 </html>
