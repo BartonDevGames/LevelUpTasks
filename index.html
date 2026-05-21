@@ -99,6 +99,10 @@ body::after{
   padding:32px 20px 80px;
 }
 
+.dragging{
+  opacity:0.5;
+}
+
 /* ── HEADER ── */
 .hd{
   display:flex;justify-content:space-between;
@@ -676,7 +680,7 @@ body::after{
 <!-- TOASTS -->
 <div class="tw" id="tw"></div>
 
-
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
 <script>
 // ── STATE ──────────────────────────────────────────────────────────
 let tasks=[], streak=0, points=0, level=1;
@@ -684,7 +688,6 @@ let lastCompleted=null, graceUsed=null, lastReset=null;
 let displayName='';
 let confettiRunning=false;
 let editIdx=-1;
-let dragIdx=null;
 const XP_LVL=250;
 
 const rewards=[
@@ -746,7 +749,7 @@ function load(){
 
 function applyData(d){
   ({displayName,tasks,streak,points,level,lastCompleted,graceUsed,lastReset}=d);
-  tasks=tasks||[];streak=streak||0;points=points||0;level=level||0;
+  tasks=tasks||[];streak=streak||0;points=points||0;level=level||1;
   save();
 }
 
@@ -865,7 +868,6 @@ function renderTasks(){
     const li=document.createElement('li');
 
     li.className='task'+(task.done?' done':'');
-    li.draggable=true;
 
     li.innerHTML=`
       <div class="drag-handle">⋮⋮</div>
@@ -969,59 +971,28 @@ function renderTasks(){
       setTimeout(()=>$('editTaskIn').focus(),100);
     });
 
-    // ── DRAG START ─────────────────────────
-    li.addEventListener('dragstart',()=>{
-
-      dragIdx=i;
-
-      li.style.opacity='0.45';
-    });
-
-    // ── DRAG END ───────────────────────────
-    li.addEventListener('dragend',()=>{
-
-      li.style.opacity='1';
-    });
-
-    // ── DRAG OVER ──────────────────────────
-    li.addEventListener('dragover',e=>{
-
-      e.preventDefault();
-
-      li.style.borderColor='var(--cyan)';
-    });
-
-    // ── DRAG LEAVE ─────────────────────────
-    li.addEventListener('dragleave',()=>{
-
-      li.style.borderColor='';
-    });
-
-    // ── DROP ───────────────────────────────
-    li.addEventListener('drop',e=>{
-
-      e.preventDefault();
-
-      li.style.borderColor='';
-
-      if(dragIdx===null || dragIdx===i){
-        return;
-      }
-
-      const movedTask=tasks.splice(dragIdx,1)[0];
-
-      tasks.splice(i,0,movedTask);
-
-      dragIdx=null;
-
-      updateAll();
-
-      toast('Task reordered','g');
-    });
-
     list.appendChild(li);
   });
 }
+
+new Sortable($('taskList'), {
+  animation: 150,
+  handle: '.drag-handle',
+  ghostClass: 'dragging',
+
+  onEnd(evt) {
+
+    const moved = tasks.splice(evt.oldIndex, 1)[0];
+
+    tasks.splice(evt.newIndex, 0, moved);
+
+    save();
+
+    renderTasks();
+
+    toast('Task reordered', 'g');
+  }
+});
 
 $('editTaskOk').addEventListener('click',()=>{
   const v=$('editTaskIn').value.trim();
