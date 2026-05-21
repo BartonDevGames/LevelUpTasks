@@ -210,6 +210,11 @@ body::after{
   border-left:2px solid transparent;
   padding:12px 14px;
   transition:border-color 0.2s;
+  cursor:grab;
+}
+
+.task:active{
+  cursor:grabbing;
 }
 .task:hover{border-color:var(--border-hi);}
 .task.done{border-left-color:var(--green);}
@@ -246,6 +251,16 @@ body::after{
   font-family:var(--mono);font-size:0.72rem;
   color:var(--muted);letter-spacing:0.06em;
 }
+
+.drag-handle{
+  color:var(--muted);
+  font-size:0.9rem;
+  letter-spacing:-2px;
+  cursor:grab;
+  user-select:none;
+  flex-shrink:0;
+}
+
 
 /* ── REWARD / GRACE / REMINDER ── */
 .reward{
@@ -669,6 +684,7 @@ let lastCompleted=null, graceUsed=null, lastReset=null;
 let displayName='';
 let confettiRunning=false;
 let editIdx=-1;
+let dragIdx=null;
 const XP_LVL=250;
 
 const rewards=[
@@ -841,61 +857,166 @@ $('addBtn').addEventListener('click',()=>{
 function renderTasks(){
   const list=$('taskList');
   list.innerHTML='';
+
   $('empty').style.display=tasks.length?'none':'block';
 
   tasks.forEach((task,i)=>{
+
     const li=document.createElement('li');
+
     li.className='task'+(task.done?' done':'');
+    li.draggable=true;
+
     li.innerHTML=`
+      <div class="drag-handle">⋮⋮</div>
+
       <input type="checkbox" class="tcb" ${task.done?'checked':''}>
+
       <span class="tt">${esc(task.text)}</span>
+
       <div class="ta">
         <button class="ib" data-edit="${i}" title="Edit">✎</button>
         <button class="ib del" data-del="${i}" title="Delete">✕</button>
-      </div>`;
+      </div>
+    `;
 
+    // ── CHECKBOX ───────────────────────────
     li.querySelector('.tcb').addEventListener('change',e=>{
+
       const was=tasks[i].done;
+
       tasks[i].done=e.target.checked;
+
       const today=new Date().toDateString();
+
       const oldLevel=level;
 
-      if(!was&&e.target.checked){
+      if(!was && e.target.checked){
+
         points+=10;
+
         if(tasks.every(t=>t.done)) milestone();
-      } else if(was&&!e.target.checked){
+
+      }else if(was && !e.target.checked){
+
         points=Math.max(0,points-10);
+
         const comp=tasks.filter(t=>t.done).length;
-        if(lastCompleted===today&&comp<tasks.length){
-          streak=Math.max(0,streak-1);points=Math.max(0,points-100);
-          lastCompleted=null;$('reward').classList.remove('show');
+
+        if(lastCompleted===today && comp<tasks.length){
+
+          streak=Math.max(0,streak-1);
+
+          points=Math.max(0,points-100);
+
+          lastCompleted=null;
+
+          $('reward').classList.remove('show');
         }
       }
 
-      level=Math.floor(points/XP_LVL) + 1;
-      if(level>oldLevel&&e.target.checked&&!confettiRunning) celebrate(level);
+      level=Math.floor(points/XP_LVL)+1;
+
+      if(level>oldLevel && e.target.checked && !confettiRunning){
+        celebrate(level);
+      }
+
       updateAll();
     });
 
+    // ── DELETE ─────────────────────────────
     li.querySelector('[data-del]').addEventListener('click',()=>{
+
       const was=tasks[i].done;
+
       tasks.splice(i,1);
-      if(was) points=Math.max(0,points-10);
-      const today=new Date().toDateString();
-      const comp=tasks.filter(t=>t.done).length;
-      if(lastCompleted===today&&(tasks.length===0||comp<tasks.length)){
-        streak=Math.max(0,streak-1);points=Math.max(0,points-100);
-        lastCompleted=null;$('reward').classList.remove('show');
+
+      if(was){
+        points=Math.max(0,points-10);
       }
-      level=Math.floor(points/XP_LVL) + 1;
-      updateAll();toast('Task removed','r');
+
+      const today=new Date().toDateString();
+
+      const comp=tasks.filter(t=>t.done).length;
+
+      if(lastCompleted===today && (tasks.length===0 || comp<tasks.length)){
+
+        streak=Math.max(0,streak-1);
+
+        points=Math.max(0,points-100);
+
+        lastCompleted=null;
+
+        $('reward').classList.remove('show');
+      }
+
+      level=Math.floor(points/XP_LVL)+1;
+
+      updateAll();
+
+      toast('Task removed','r');
     });
 
+    // ── EDIT ───────────────────────────────
     li.querySelector('[data-edit]').addEventListener('click',()=>{
+
       editIdx=i;
+
       $('editTaskIn').value=tasks[i].text;
+
       openModal('editTaskOv');
+
       setTimeout(()=>$('editTaskIn').focus(),100);
+    });
+
+    // ── DRAG START ─────────────────────────
+    li.addEventListener('dragstart',()=>{
+
+      dragIdx=i;
+
+      li.style.opacity='0.45';
+    });
+
+    // ── DRAG END ───────────────────────────
+    li.addEventListener('dragend',()=>{
+
+      li.style.opacity='1';
+    });
+
+    // ── DRAG OVER ──────────────────────────
+    li.addEventListener('dragover',e=>{
+
+      e.preventDefault();
+
+      li.style.borderColor='var(--cyan)';
+    });
+
+    // ── DRAG LEAVE ─────────────────────────
+    li.addEventListener('dragleave',()=>{
+
+      li.style.borderColor='';
+    });
+
+    // ── DROP ───────────────────────────────
+    li.addEventListener('drop',e=>{
+
+      e.preventDefault();
+
+      li.style.borderColor='';
+
+      if(dragIdx===null || dragIdx===i){
+        return;
+      }
+
+      const movedTask=tasks.splice(dragIdx,1)[0];
+
+      tasks.splice(i,0,movedTask);
+
+      dragIdx=null;
+
+      updateAll();
+
+      toast('Task reordered','g');
     });
 
     list.appendChild(li);
@@ -1027,3 +1148,5 @@ updateAll();
 </script>
 </body>
 </html>
+
+
