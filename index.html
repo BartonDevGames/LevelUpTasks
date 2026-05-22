@@ -215,6 +215,7 @@ body::after{
   padding:12px 14px;
   transition:border-color 0.2s;
   cursor:grab;
+  min-height:62px;
 }
 
 .task:active{
@@ -255,23 +256,73 @@ body::after{
   font-family:var(--mono);font-size:0.72rem;
   color:var(--muted);letter-spacing:0.06em;
 }
-
-.drag-handle{
-  color:var(--muted);
-  font-size:0.9rem;
-  letter-spacing:-2px;
-  cursor:grab;
+.task,
+.task *{
+  -webkit-user-select:none;
   user-select:none;
-  flex-shrink:0;
 }
 
+.tcb,
+.ib{
+  pointer-events:auto;
+}
+
+.drag-handle{
+  touch-action:none;
+  -webkit-user-drag:none;
+}
+
+.drag-handle{
+  width:38px;
+  height:38px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:var(--muted);
+
+  font-size:1.15rem;
+
+  cursor:grab;
+
+  user-select:none;
+  -webkit-user-select:none;
+
+  touch-action:none;
+
+  flex-shrink:0;
+
+  border-radius:8px;
+
+  transition:all 0.15s;
+}
+
+.drag-handle:hover{
+  background:rgba(255,255,255,0.04);
+  color:var(--cyan);
+}
+
+.drag-handle:active{
+  cursor:grabbing;
+  transform:scale(1.06);
+}
+
+
 .sortable-ghost{
-  opacity:0.35;
+  opacity:0.25;
 }
 
 .sortable-chosen{
   border-color:var(--cyan)!important;
+  transform:scale(1.02);
 }
+
+.sortable-drag{
+  transform:rotate(1deg);
+  box-shadow:0 10px 30px rgba(0,0,0,0.35);
+}
+
 
 /* ── REWARD / GRACE / REMINDER ── */
 .reward{
@@ -982,24 +1033,55 @@ function renderTasks(){
   });
 }
 
-new Sortable($('taskList'), {
-  animation: 150,
-  handle: '.drag-handle',
-  ghostClass: 'dragging',
+new Sortable(taskList,{
 
-  onEnd(evt) {
+  animation:150,
 
-    const moved = tasks.splice(evt.oldIndex, 1)[0];
+  handle:'.drag-handle',
 
-    tasks.splice(evt.newIndex, 0, moved);
+  draggable:'.task',
+
+  ghostClass:'sortable-ghost',
+
+  chosenClass:'sortable-chosen',
+
+  dragClass:'sortable-drag',
+
+  forceFallback:true,
+
+  fallbackOnBody:true,
+
+  swapThreshold:0.65,
+
+  touchStartThreshold:3,
+
+  delay:120,
+
+  delayOnTouchOnly:true,
+
+  preventOnFilter:false,
+
+  onStart:()=>{
+    document.body.style.userSelect='none';
+    document.body.style.webkitUserSelect='none';
+  },
+
+  onEnd:(evt)=>{
+
+    document.body.style.userSelect='';
+    document.body.style.webkitUserSelect='';
+
+    const moved=tasks.splice(evt.oldIndex,1)[0];
+
+    tasks.splice(evt.newIndex,0,moved);
 
     save();
 
-    renderTasks();
-
-    toast('Task reordered', 'g');
+    toast('Task reordered','g');
   }
 });
+
+
 
 $('editTaskOk').addEventListener('click',()=>{
   const v=$('editTaskIn').value.trim();
@@ -1110,12 +1192,40 @@ function checkGrace(){
 
 // ── DAILY RESET ────────────────────────────────────────────────────
 function dailyReset(){
+
   const today=new Date().toDateString();
+
+  // ── RESET STREAK IF A DAY WAS MISSED ──
+  if(lastCompleted){
+
+    const last=new Date(lastCompleted);
+
+    const now=new Date(today);
+
+    const diff=Math.floor((now-last)/864e5);
+
+    // More than 1 day since last full completion
+    if(diff>1){
+
+      streak=0;
+
+      toast('Streak lost','r');
+    }
+  }
+
+  // ── RESET TASKS EACH NEW DAY ──
   if(lastReset!==today){
-    tasks.forEach(t=>{t.done=false;});
-    lastReset=today;save();
+
+    tasks.forEach(t=>{
+      t.done=false;
+    });
+
+    lastReset=today;
+
+    save();
   }
 }
+
 
 // ── BOOT ───────────────────────────────────────────────────────────
 load();
@@ -1123,29 +1233,6 @@ initProfile();
 dailyReset();
 checkGrace();
 updateAll();
-new Sortable(taskList,{
-
-  animation:180,
-
-  handle:'.drag-handle',
-
-  ghostClass:'sortable-ghost',
-
-  chosenClass:'sortable-chosen',
-
-  onEnd:(evt)=>{
-
-    const moved=tasks.splice(evt.oldIndex,1)[0];
-
-    tasks.splice(evt.newIndex,0,moved);
-
-    save();
-
-    toast('Task reordered','g');
-  }
-});
 </script>
 </body>
 </html>
-
-
