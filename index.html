@@ -775,6 +775,28 @@ const rewards = [
   '✨ Habit loop fully formed'
 ];
 
+self.addEventListener("install", () => {
+  self.skipWaiting();
+});
+
+self.addEventListener("push", event => {
+  const data = event.data ? event.data.json() : {};
+
+  event.waitUntil(
+    self.registration.showNotification(data.title || "Reminder", {
+      body: data.body || "You have a task",
+      icon: ""
+    })
+  );
+});
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+
+Notification.requestPermission();
+
+
 // ══════════════════════════════════════════════════════════════════
 //  UTILS
 // ══════════════════════════════════════════════════════════════════
