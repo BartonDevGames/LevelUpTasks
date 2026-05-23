@@ -22,42 +22,31 @@ html,body{touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
   --orange:#fb923c;
   --mono:'Space Mono',monospace;
   --body:'DM Sans',sans-serif;
-  --radius:3px;
   --trans:0.18s cubic-bezier(0.4,0,0.2,1);
 }
 
-body{
-  font-family:var(--body);
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
-  overflow-x:hidden;
-}
+body{font-family:var(--body);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
 
 body::before{
   content:'';position:fixed;inset:0;z-index:0;
-  background-image:
-    linear-gradient(rgba(34,211,238,0.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(34,211,238,0.025) 1px,transparent 1px);
+  background-image:linear-gradient(rgba(34,211,238,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,0.025) 1px,transparent 1px);
   background-size:40px 40px;pointer-events:none;
 }
 body::after{
   content:'';position:fixed;inset:0;z-index:0;
-  background:
-    radial-gradient(ellipse 70% 50% at 15% 10%,rgba(34,211,238,0.04),transparent),
-    radial-gradient(ellipse 50% 60% at 85% 90%,rgba(240,165,0,0.05),transparent);
+  background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(34,211,238,0.04),transparent),radial-gradient(ellipse 50% 60% at 85% 90%,rgba(240,165,0,0.05),transparent);
   pointer-events:none;
 }
 
 .app{position:relative;z-index:1;max-width:840px;margin:0 auto;padding:28px 18px 100px;}
 
-/* ── HEADER ── */
+/* HEADER */
 .hd{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:24px;}
 .logo{font-family:var(--mono);font-size:1.45rem;font-weight:700;letter-spacing:-0.5px;line-height:1;}
 .logo em{color:var(--amber);font-style:normal;}
 .logo-sub{font-size:0.72rem;color:var(--muted);margin-top:5px;letter-spacing:0.1em;text-transform:uppercase;font-family:var(--mono);}
 
-/* ── STAT CARDS ── */
+/* STAT CARDS */
 .stats{display:flex;gap:8px;flex-wrap:wrap;}
 .sc{background:var(--bg3);border:1px solid var(--border);padding:11px 16px;position:relative;min-width:76px;transition:border-color var(--trans);}
 .sc::after{content:'';position:absolute;top:0;right:0;border-style:solid;border-width:0 9px 9px 0;border-color:transparent var(--bg) transparent transparent;}
@@ -66,20 +55,13 @@ body::after{
 .sv.a{color:var(--amber);}.sv.c{color:var(--cyan);}.sv.g{color:var(--green);}
 .sl{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-top:4px;}
 
-/* ── PANELS ── */
-.panel{
-  background:var(--surface);border:1px solid var(--border);
-  padding:20px;margin-bottom:14px;
-  backdrop-filter:blur(12px);position:relative;
-}
-.panel::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0.25;
-}
+/* PANELS */
+.panel{background:var(--surface);border:1px solid var(--border);padding:20px;margin-bottom:14px;backdrop-filter:blur(12px);position:relative;}
+.panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0.25;}
 .ptitle{font-family:var(--mono);font-size:0.63rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--muted);margin-bottom:14px;}
 .ptitle span{color:var(--amber);}
 
-/* ── XP BAR ── */
+/* XP BAR */
 .xp-row{display:flex;justify-content:space-between;margin-bottom:6px;align-items:center;}
 .xp-label{font-family:var(--mono);font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;}
 .xp-val{font-family:var(--mono);font-size:0.68rem;color:var(--amber);}
@@ -88,324 +70,246 @@ body::after{
 .bar-fill.xp{background:linear-gradient(90deg,var(--amber),#fcd34d);}
 .bar-fill.prog{background:linear-gradient(90deg,var(--cyan),var(--green));}
 
-/* ── PROGRESS ── */
+/* PROGRESS */
 .prog-row{display:flex;justify-content:space-between;margin-bottom:6px;}
 .prog-label{font-family:var(--mono);font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;}
 .prog-pct{font-family:var(--mono);font-size:0.68rem;color:var(--cyan);}
 
-/* ── TOOLBAR ── */
+/* TOOLBAR */
 .tb{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
-.btn-t{
-  background:var(--bg3);border:1px solid var(--border);color:var(--muted);
-  padding:7px 12px;font-family:var(--mono);font-size:0.6rem;
-  letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;
-  transition:all var(--trans);white-space:nowrap;
-}
+.btn-t{background:var(--bg3);border:1px solid var(--border);color:var(--muted);padding:7px 12px;font-family:var(--mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:all var(--trans);white-space:nowrap;}
 .btn-t:hover{border-color:var(--border-hi);color:var(--text);}
 .btn-t.danger:hover{border-color:var(--red);color:var(--red);}
-.btn-t.active{border-color:var(--cyan);color:var(--cyan);}
 
-/* ── TABS ── */
-.tabs{display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid var(--border);}
-.tab{
-  background:transparent;border:none;border-bottom:2px solid transparent;
-  color:var(--muted);padding:9px 14px;font-family:var(--mono);
-  font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;
-  cursor:pointer;transition:all var(--trans);margin-bottom:-1px;
-}
+/* TABS */
+.tabs{display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid var(--border);overflow-x:auto;}
+.tab{background:transparent;border:none;border-bottom:2px solid transparent;color:var(--muted);padding:9px 14px;font-family:var(--mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all var(--trans);margin-bottom:-1px;white-space:nowrap;}
 .tab:hover{color:var(--text);}
 .tab.active{color:var(--cyan);border-bottom-color:var(--cyan);}
-.tab .cnt{
-  display:inline-block;background:var(--bg3);border:1px solid var(--border);
-  border-radius:9px;padding:0 5px;font-size:0.55rem;margin-left:5px;
-  vertical-align:middle;line-height:16px;min-width:16px;text-align:center;
-}
+.tab .cnt{display:inline-block;background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:0 5px;font-size:0.55rem;margin-left:5px;vertical-align:middle;line-height:16px;min-width:16px;text-align:center;}
 .tab.active .cnt{background:var(--cyan-dim);border-color:rgba(34,211,238,0.3);color:var(--cyan);}
 
-/* ── ADD TASK FORM ── */
+/* ADD FORM */
 .add-form{margin-bottom:14px;}
 .add-row1{display:flex;gap:7px;margin-bottom:7px;}
-.ti{
-  flex:1;background:var(--bg2);border:1px solid var(--border);
-  border-bottom:1px solid var(--border-hi);color:var(--text);
-  padding:11px 13px;font-family:var(--body);font-size:0.88rem;
-  outline:none;transition:border-color var(--trans);min-width:0;
-}
+.ti{flex:1;background:var(--bg2);border:1px solid var(--border);border-bottom:1px solid var(--border-hi);color:var(--text);padding:11px 13px;font-family:var(--body);font-size:0.88rem;outline:none;transition:border-color var(--trans);min-width:0;}
 .ti:focus{border-color:var(--cyan);}
 .ti::placeholder{color:var(--muted);}
-.btn-add{
-  background:var(--amber);border:none;color:#07090f;
-  padding:11px 18px;font-family:var(--mono);font-size:0.68rem;font-weight:700;
-  letter-spacing:0.08em;cursor:pointer;transition:all var(--trans);
-  opacity:0.3;pointer-events:none;white-space:nowrap;flex-shrink:0;
-}
+.btn-add{background:var(--amber);border:none;color:#07090f;padding:11px 18px;font-family:var(--mono);font-size:0.68rem;font-weight:700;letter-spacing:0.08em;cursor:pointer;transition:all var(--trans);opacity:0.3;pointer-events:none;white-space:nowrap;flex-shrink:0;}
 .btn-add.on{opacity:1;pointer-events:auto;}
 .btn-add.on:hover{background:#fbbf24;}
-
 .add-options{display:flex;gap:7px;flex-wrap:wrap;align-items:center;}
-.type-sel{
-  background:var(--bg2);border:1px solid var(--border);color:var(--text);
-  padding:7px 10px;font-family:var(--mono);font-size:0.62rem;
-  letter-spacing:0.06em;outline:none;cursor:pointer;
-  transition:border-color var(--trans);
-}
-.type-sel:focus{border-color:var(--cyan);}
-.type-sel option{background:var(--bg2);}
-.date-in{
-  background:var(--bg2);border:1px solid var(--border);color:var(--text);
-  padding:7px 10px;font-family:var(--mono);font-size:0.62rem;
-  outline:none;transition:border-color var(--trans);
-  color-scheme:dark;
-}
+.type-sel,.folder-sel{background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:7px 10px;font-family:var(--mono);font-size:0.62rem;letter-spacing:0.06em;outline:none;cursor:pointer;transition:border-color var(--trans);}
+.type-sel:focus,.folder-sel:focus{border-color:var(--cyan);}
+.type-sel option,.folder-sel option{background:var(--bg2);}
+.date-in{background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:7px 10px;font-family:var(--mono);font-size:0.62rem;outline:none;transition:border-color var(--trans);color-scheme:dark;}
 .date-in:focus{border-color:var(--cyan);}
 .date-in.hidden{display:none;}
-.time-in{
-  background:var(--bg2);border:1px solid var(--border);color:var(--text);
-  padding:7px 10px;font-family:var(--mono);font-size:0.62rem;
-  outline:none;transition:border-color var(--trans);
-  color-scheme:dark;
-}
+.time-in{background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:7px 10px;font-family:var(--mono);font-size:0.62rem;outline:none;transition:border-color var(--trans);color-scheme:dark;}
 .time-in:focus{border-color:var(--cyan);}
 
-/* ── TASK LIST ── */
+/* ══ FOLDER SYSTEM ══ */
+.folder-block{margin-bottom:6px;}
+
+.folder-header{
+  display:flex;align-items:center;gap:0;
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-left:3px solid var(--amber);
+  cursor:pointer;
+  transition:border-color var(--trans), background var(--trans);
+  user-select:none;-webkit-user-select:none;
+  position:relative;
+}
+.folder-header:hover{border-color:var(--border-hi);background:rgba(240,165,0,0.04);}
+.folder-header.open{border-color:rgba(240,165,0,0.3);background:rgba(240,165,0,0.05);}
+
+.folder-arrow{
+  width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+  font-size:0.65rem;color:var(--amber);flex-shrink:0;
+  transition:transform var(--trans);
+}
+.folder-header.open .folder-arrow{transform:rotate(90deg);}
+
+.folder-icon{font-size:0.9rem;margin-right:2px;flex-shrink:0;}
+
+.folder-name{
+  flex:1;font-family:var(--mono);font-size:0.72rem;font-weight:700;
+  letter-spacing:0.08em;color:var(--text);padding:10px 8px 10px 4px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+
+.folder-meta{
+  display:flex;align-items:center;gap:6px;padding-right:10px;flex-shrink:0;
+}
+.folder-prog{
+  font-family:var(--mono);font-size:0.58rem;color:var(--muted);
+  white-space:nowrap;
+}
+.folder-prog .done-count{color:var(--green);}
+
+.folder-mini-bar{
+  width:48px;height:3px;background:var(--bg2);border-radius:2px;overflow:hidden;
+}
+.folder-mini-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--green));transition:width 0.4s ease;}
+
+.folder-actions{display:flex;gap:3px;padding-right:8px;flex-shrink:0;}
+
+.folder-body{
+  overflow:hidden;
+  max-height:0;
+  transition:max-height 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.22s ease;
+  opacity:0;
+}
+.folder-body.open{
+  max-height:2000px;
+  opacity:1;
+}
+
+.folder-tasks{
+  display:flex;flex-direction:column;gap:4px;
+  padding:6px 0 6px 20px;
+  border-left:1px solid rgba(240,165,0,0.15);
+  margin-left:0;
+}
+
+.folder-empty{
+  padding:14px 20px;font-family:var(--mono);font-size:0.65rem;
+  color:var(--muted);letter-spacing:0.06em;
+  border-left:1px solid rgba(240,165,0,0.15);
+  margin-left:0;
+}
+
+/* ungrouped section label */
+.ungrouped-label{
+  font-family:var(--mono);font-size:0.6rem;color:var(--muted);
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:10px 0 6px 2px;
+  display:flex;align-items:center;gap:8px;
+}
+.ungrouped-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* TASK LIST */
 .tl{display:flex;flex-direction:column;gap:5px;min-height:4px;}
 
 .task{
   display:flex;align-items:center;gap:10px;
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-left:3px solid transparent;
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid transparent;
   padding:10px 12px;
-  transition:border-color var(--trans), background var(--trans), opacity var(--trans);
+  transition:border-color var(--trans),background var(--trans),opacity var(--trans);
   position:relative;overflow:hidden;
   -webkit-user-select:none;user-select:none;
 }
 .task:hover{border-color:var(--border-hi);}
-
-/* type colors */
 .task.type-daily{border-left-color:var(--cyan);}
 .task.type-once{border-left-color:var(--violet);}
 .task.type-scheduled{border-left-color:var(--amber);}
-
-/* done */
 .task.done{opacity:0.6;}
 .task.done .tt{text-decoration:line-through;color:var(--muted);}
 .task.done{border-left-color:var(--green)!important;}
-
-/* missed */
-.task.missed{
-  background:rgba(248,113,113,0.05);
-  border-left-color:var(--red)!important;
-  border-color:rgba(248,113,113,0.2);
-}
+.task.missed{background:rgba(248,113,113,0.05);border-left-color:var(--red)!important;border-color:rgba(248,113,113,0.2);}
 .task.missed .tt{color:var(--red);}
 
-/* complete flash */
-@keyframes completeFlash{
-  0%{background:rgba(52,211,153,0.18);}
-  100%{background:var(--bg2);}
-}
+@keyframes completeFlash{0%{background:rgba(52,211,153,0.18);}100%{background:var(--bg2);}}
 .task.flash{animation:completeFlash 0.5s ease-out;}
 
-/* ── TASK PARTS ── */
-.drag-handle{
-  width:32px;height:32px;display:flex;align-items:center;justify-content:center;
-  color:var(--muted);font-size:1rem;cursor:grab;
-  user-select:none;-webkit-user-select:none;touch-action:none;
-  flex-shrink:0;border-radius:4px;transition:all var(--trans);
-}
+/* TASK PARTS */
+.drag-handle{width:30px;height:30px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.9rem;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none;flex-shrink:0;border-radius:4px;transition:all var(--trans);}
 .drag-handle:hover{background:rgba(255,255,255,0.04);color:var(--cyan);}
 .drag-handle:active{cursor:grabbing;}
-
-.tcb{
-  width:15px;height:15px;flex-shrink:0;
-  border:1px solid var(--border-hi);background:transparent;
-  cursor:pointer;appearance:none;position:relative;
-  transition:all 0.15s;border-radius:2px;
-}
+.tcb{width:15px;height:15px;flex-shrink:0;border:1px solid var(--border-hi);background:transparent;cursor:pointer;appearance:none;position:relative;transition:all 0.15s;border-radius:2px;}
 .tcb:checked{background:var(--green);border-color:var(--green);}
-.tcb:checked::after{
-  content:'✓';position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-52%);color:#07090f;font-size:0.52rem;font-weight:700;
-}
-
+.tcb:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);color:#07090f;font-size:0.52rem;font-weight:700;}
 .task-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;}
 .tt{font-size:0.88rem;word-break:break-word;line-height:1.4;}
 .task-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
-
-.type-badge{
-  font-family:var(--mono);font-size:0.52rem;letter-spacing:0.08em;
-  text-transform:uppercase;padding:1px 5px;border:1px solid;border-radius:2px;
-}
+.type-badge{font-family:var(--mono);font-size:0.52rem;letter-spacing:0.08em;text-transform:uppercase;padding:1px 5px;border:1px solid;border-radius:2px;}
 .badge-daily{color:var(--cyan);border-color:rgba(34,211,238,0.3);background:var(--cyan-dim);}
 .badge-once{color:var(--violet);border-color:rgba(167,139,250,0.3);background:var(--violet-dim);}
 .badge-scheduled{color:var(--amber);border-color:rgba(240,165,0,0.3);background:var(--amber-dim);}
 .badge-missed{color:var(--red);border-color:rgba(248,113,113,0.3);background:var(--red-dim);}
 .badge-overdue{color:var(--orange);border-color:rgba(251,146,60,0.3);background:rgba(251,146,60,0.1);}
-
 .task-date{font-family:var(--mono);font-size:0.55rem;color:var(--muted);}
 .task-remind{font-family:var(--mono);font-size:0.55rem;color:var(--muted);}
 .task-remind.set{color:var(--violet);}
-
 .ta{display:flex;gap:4px;flex-shrink:0;}
-.ib{
-  width:26px;height:26px;background:transparent;border:1px solid var(--border);
-  color:var(--muted);cursor:pointer;font-size:0.7rem;
-  display:flex;align-items:center;justify-content:center;transition:all var(--trans);
-  flex-shrink:0;
-}
+.ib{width:26px;height:26px;background:transparent;border:1px solid var(--border);color:var(--muted);cursor:pointer;font-size:0.7rem;display:flex;align-items:center;justify-content:center;transition:all var(--trans);flex-shrink:0;}
 .ib:hover{border-color:var(--border-hi);color:var(--text);}
 .ib.del:hover{border-color:var(--red);color:var(--red);}
 .ib.remind:hover{border-color:var(--violet);color:var(--violet);}
 
-.empty{
-  text-align:center;padding:28px;font-family:var(--mono);font-size:0.7rem;
-  color:var(--muted);letter-spacing:0.06em;
-}
+.empty{text-align:center;padding:28px;font-family:var(--mono);font-size:0.7rem;color:var(--muted);letter-spacing:0.06em;}
 
-/* ── STREAK WARNING ── */
-.streak-warn{
-  display:none;background:rgba(240,165,0,0.08);
-  border:1px solid rgba(240,165,0,0.2);border-left:2px solid var(--amber);
-  padding:10px 14px;margin-top:12px;
-  font-family:var(--mono);font-size:0.7rem;color:var(--amber);letter-spacing:0.04em;
-}
+/* STREAK WARNING */
+.streak-warn{display:none;background:rgba(240,165,0,0.08);border:1px solid rgba(240,165,0,0.2);border-left:2px solid var(--amber);padding:10px 14px;margin-top:12px;font-family:var(--mono);font-size:0.7rem;color:var(--amber);letter-spacing:0.04em;}
 .streak-warn.show{display:block;}
 
-/* ── REWARD ── */
-.reward{
-  display:none;margin-top:12px;
-  background:var(--amber-dim);border:1px solid rgba(240,165,0,0.25);
-  border-left:2px solid var(--amber);padding:11px 14px;
-  font-family:var(--mono);font-size:0.72rem;color:var(--amber);letter-spacing:0.04em;
-}
+/* REWARD */
+.reward{display:none;margin-top:12px;background:var(--amber-dim);border:1px solid rgba(240,165,0,0.25);border-left:2px solid var(--amber);padding:11px 14px;font-family:var(--mono);font-size:0.72rem;color:var(--amber);letter-spacing:0.04em;}
 .reward.show{display:block;}
 
-/* ── SYNC BADGE ── */
-.sbadge{
-  display:none;background:var(--bg3);
-  border:1px dashed rgba(34,211,238,0.3);
-  padding:14px;text-align:center;margin-bottom:12px;
-}
+/* SYNC BADGE */
+.sbadge{display:none;background:var(--bg3);border:1px dashed rgba(34,211,238,0.3);padding:14px;text-align:center;margin-bottom:12px;}
 .sbadge.show{display:block;}
 .sbadge-lbl{font-family:var(--mono);font-size:0.58rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
 .scode{font-family:var(--mono);font-size:2rem;font-weight:700;letter-spacing:12px;color:var(--cyan);}
 .sbadge-hint{font-size:0.68rem;color:var(--muted);margin-top:6px;}
-.btn-copy{
-  margin-top:8px;background:transparent;border:1px solid var(--border-hi);
-  color:var(--muted);padding:6px 14px;font-family:var(--mono);font-size:0.6rem;
-  letter-spacing:0.08em;cursor:pointer;transition:all var(--trans);
-}
+.btn-copy{margin-top:8px;background:transparent;border:1px solid var(--border-hi);color:var(--muted);padding:6px 14px;font-family:var(--mono);font-size:0.6rem;letter-spacing:0.08em;cursor:pointer;transition:all var(--trans);}
 .btn-copy:hover{color:var(--cyan);border-color:var(--cyan);}
 
-/* ── SYNC STATUS ── */
+/* SYNC STATUS */
 .sync-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;justify-content:flex-end;}
 .sync-dot{width:6px;height:6px;border-radius:50%;background:var(--muted);flex-shrink:0;}
 .sync-dot.ok{background:var(--green);}
 .sync-dot.err{background:var(--red);}
 .sync-dot.syncing{background:var(--amber);animation:pulse 1s infinite;}
 .sync-lbl{font-family:var(--mono);font-size:0.6rem;color:var(--muted);}
-.sync-lbl.ok{color:var(--green);}
-.sync-lbl.err{color:var(--red);}
-.sync-lbl.syncing{color:var(--amber);}
-.auto-sync-toggle{
-  display:flex;align-items:center;gap:6px;cursor:pointer;
-  font-family:var(--mono);font-size:0.6rem;color:var(--muted);
-  transition:color var(--trans);
-}
+.sync-lbl.ok{color:var(--green);}.sync-lbl.err{color:var(--red);}.sync-lbl.syncing{color:var(--amber);}
+.auto-sync-toggle{display:flex;align-items:center;gap:6px;cursor:pointer;font-family:var(--mono);font-size:0.6rem;color:var(--muted);transition:color var(--trans);}
 .auto-sync-toggle:hover{color:var(--text);}
-.toggle-sw{
-  width:28px;height:14px;background:var(--bg3);border:1px solid var(--border);
-  border-radius:7px;position:relative;transition:background var(--trans);flex-shrink:0;
-}
-.toggle-sw::after{
-  content:'';position:absolute;top:2px;left:2px;
-  width:8px;height:8px;background:var(--muted);border-radius:50%;
-  transition:transform var(--trans), background var(--trans);
-}
+.toggle-sw{width:28px;height:14px;background:var(--bg3);border:1px solid var(--border);border-radius:7px;position:relative;transition:background var(--trans);flex-shrink:0;}
+.toggle-sw::after{content:'';position:absolute;top:2px;left:2px;width:8px;height:8px;background:var(--muted);border-radius:50%;transition:transform var(--trans),background var(--trans);}
 .toggle-sw.on{background:rgba(34,211,238,0.2);border-color:var(--cyan);}
 .toggle-sw.on::after{transform:translateX(14px);background:var(--cyan);}
 
-/* ── MODALS ── */
-.ov{
-  position:fixed;inset:0;background:rgba(7,9,15,0.88);
-  backdrop-filter:blur(8px);z-index:500;
-  display:none;align-items:center;justify-content:center;padding:16px;
-}
+/* MODALS */
+.ov{position:fixed;inset:0;background:rgba(7,9,15,0.88);backdrop-filter:blur(8px);z-index:500;display:none;align-items:center;justify-content:center;padding:16px;}
 .ov.show{display:flex;}
-.modal{
-  background:var(--bg2);border:1px solid var(--border-hi);
-  width:100%;max-width:420px;position:relative;
-  animation:mIn 0.2s cubic-bezier(0.34,1.56,0.64,1);
-}
-.modal::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,var(--amber),var(--cyan));
-}
-.mh{
-  padding:18px 20px 14px;border-bottom:1px solid var(--border);
-  display:flex;justify-content:space-between;align-items:center;
-}
+.modal{background:var(--bg2);border:1px solid var(--border-hi);width:100%;max-width:420px;position:relative;animation:mIn 0.2s cubic-bezier(0.34,1.56,0.64,1);}
+.modal::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--amber),var(--cyan));}
+.mh{padding:18px 20px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
 .mt{font-family:var(--mono);font-size:0.78rem;font-weight:700;letter-spacing:0.08em;}
-.mx{
-  width:24px;height:24px;background:transparent;border:1px solid var(--border);
-  color:var(--muted);cursor:pointer;font-size:0.85rem;
-  display:flex;align-items:center;justify-content:center;transition:all var(--trans);
-}
+.mx{width:24px;height:24px;background:transparent;border:1px solid var(--border);color:var(--muted);cursor:pointer;font-size:0.85rem;display:flex;align-items:center;justify-content:center;transition:all var(--trans);}
 .mx:hover{border-color:var(--red);color:var(--red);}
 .mb{padding:16px 20px;}
 .mf{padding:0 20px 18px;display:flex;flex-direction:column;gap:7px;}
 .mdesc{font-size:0.84rem;color:var(--muted);line-height:1.6;margin-bottom:4px;}
-.mwarn{
-  background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.2);
-  padding:10px;font-size:0.78rem;color:#fca5a5;margin-bottom:4px;
-}
-.mi{
-  width:100%;background:var(--bg3);border:1px solid var(--border);
-  color:var(--text);padding:10px 12px;
-  font-family:var(--body);font-size:0.92rem;
-  outline:none;transition:border-color var(--trans);
-}
+.mwarn{background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.2);padding:10px;font-size:0.78rem;color:#fca5a5;margin-bottom:4px;}
+.mi{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:10px 12px;font-family:var(--body);font-size:0.92rem;outline:none;transition:border-color var(--trans);}
 .mi:focus{border-color:var(--cyan);}
 .mi::placeholder{color:var(--muted);}
 .mi.code{font-family:var(--mono);font-size:1.4rem;font-weight:700;letter-spacing:10px;text-align:center;text-transform:uppercase;}
 .mi.time{font-family:var(--mono);color-scheme:dark;}
-.bp{
-  width:100%;padding:11px;background:var(--amber);border:none;
-  color:#07090f;font-family:var(--mono);font-size:0.7rem;font-weight:700;
-  letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all var(--trans);
-}
+.bp{width:100%;padding:11px;background:var(--amber);border:none;color:#07090f;font-family:var(--mono);font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all var(--trans);}
 .bp:hover{background:#fbbf24;}
-.bs{
-  width:100%;padding:9px;background:transparent;border:1px solid var(--border);
-  color:var(--muted);font-family:var(--mono);font-size:0.66rem;letter-spacing:0.08em;
-  cursor:pointer;transition:all var(--trans);
-}
+.bs{width:100%;padding:9px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:0.66rem;letter-spacing:0.08em;cursor:pointer;transition:all var(--trans);}
 .bs:hover{border-color:var(--border-hi);color:var(--text);}
-.bdanger{
-  width:100%;padding:11px;background:transparent;
-  border:1px solid rgba(248,113,113,0.35);color:var(--red);
-  font-family:var(--mono);font-size:0.7rem;letter-spacing:0.1em;
-  cursor:pointer;transition:all var(--trans);
-}
+.bdanger{width:100%;padding:11px;background:transparent;border:1px solid rgba(248,113,113,0.35);color:var(--red);font-family:var(--mono);font-size:0.7rem;letter-spacing:0.1em;cursor:pointer;transition:all var(--trans);}
 .bdanger:hover{background:rgba(248,113,113,0.1);}
 .mlabel{font-family:var(--mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;}
 .notif-deny{font-size:0.75rem;color:var(--red);padding:8px;text-align:center;display:none;}
 .notif-deny.show{display:block;}
 
-/* ── LEVEL UP ── */
-.lu-ov{
-  position:fixed;inset:0;z-index:900;background:rgba(7,9,15,0.7);
-  backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;
-  opacity:0;pointer-events:none;transition:opacity 0.25s;
-}
+/* COLOR PICKER for folders */
+.color-picker-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:4px;}
+.cp-swatch{width:22px;height:22px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all 0.15s;flex-shrink:0;}
+.cp-swatch:hover{transform:scale(1.15);}
+.cp-swatch.sel{border-color:var(--text);transform:scale(1.15);}
+
+/* LEVEL UP */
+.lu-ov{position:fixed;inset:0;z-index:900;background:rgba(7,9,15,0.7);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.25s;}
 .lu-ov.show{opacity:1;pointer-events:auto;}
-.lu-card{
-  background:var(--bg2);border:1px solid var(--amber);
-  padding:40px 52px;text-align:center;
-  transform:scale(0.75);transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-  position:relative;
-}
+.lu-card{background:var(--bg2);border:1px solid var(--amber);padding:40px 52px;text-align:center;transform:scale(0.75);transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);position:relative;}
 .lu-ov.show .lu-card{transform:scale(1);}
 .lu-card::before,.lu-card::after{content:'';position:absolute;width:22px;height:22px;}
 .lu-card::before{top:-1px;left:-1px;border-top:2px solid var(--amber);border-left:2px solid var(--amber);}
@@ -414,57 +318,34 @@ body::after{
 .lu-num{font-family:var(--mono);font-size:4.5rem;font-weight:700;color:var(--text);line-height:1;}
 .lu-sub{font-size:0.78rem;color:var(--muted);margin-top:7px;font-family:var(--mono);}
 
-/* ── TOASTS ── */
-.tw{
-  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
-  z-index:800;display:flex;flex-direction:column;gap:5px;align-items:center;
-  pointer-events:none;
-}
-.toast{
-  background:var(--bg3);border:1px solid var(--border-hi);border-left:2px solid var(--cyan);
-  padding:8px 16px;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.04em;
-  white-space:nowrap;opacity:0;transform:translateY(8px);transition:all 0.2s;
-}
+/* TOASTS */
+.tw{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:800;display:flex;flex-direction:column;gap:5px;align-items:center;pointer-events:none;}
+.toast{background:var(--bg3);border:1px solid var(--border-hi);border-left:2px solid var(--cyan);padding:8px 16px;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.04em;white-space:nowrap;opacity:0;transform:translateY(8px);transition:all 0.2s;}
 .toast.show{opacity:1;transform:translateY(0);}
 .toast.a{border-left-color:var(--amber);color:var(--amber);}
 .toast.g{border-left-color:var(--green);color:var(--green);}
 .toast.r{border-left-color:var(--red);color:var(--red);}
 .toast.v{border-left-color:var(--violet);color:var(--violet);}
 
-/* ── SORTABLE ── */
+/* SORTABLE */
 .sortable-ghost{opacity:0.2;}
 .sortable-chosen{border-color:var(--cyan)!important;transform:scale(1.015);}
 .sortable-drag{transform:rotate(0.8deg);box-shadow:0 12px 32px rgba(0,0,0,0.4);}
 
-/* ── MISC ── */
+/* MISC */
 .fire{display:inline-block;animation:pulse 1.4s infinite;}
-.divider{height:1px;background:var(--border);margin:12px 0;}
-.reminder-bar{
-  display:none;background:rgba(240,165,0,0.06);border:1px solid rgba(240,165,0,0.15);
-  padding:9px 14px;margin-top:10px;font-family:var(--mono);font-size:0.68rem;
-  color:var(--amber);letter-spacing:0.04em;text-align:center;
-}
+.reminder-bar{display:none;background:rgba(240,165,0,0.06);border:1px solid rgba(240,165,0,0.15);padding:9px 14px;margin-top:10px;font-family:var(--mono);font-size:0.68rem;color:var(--amber);letter-spacing:0.04em;text-align:center;}
 .reminder-bar.show{display:block;}
 
-/* ── LIGHT THEME ── */
-[data-theme="light"]{
-  --bg:#f1f5f9;--bg2:#e8edf5;--bg3:#dce3ee;
-  --surface:rgba(232,237,245,0.98);
-  --border:rgba(0,0,0,0.08);--border-hi:rgba(0,0,0,0.15);
-  --text:#0f172a;--muted:#4a6280;
-}
-[data-theme="light"] body::before{
-  background-image:
-    linear-gradient(rgba(34,211,238,0.06) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(34,211,238,0.06) 1px,transparent 1px);
-}
+/* LIGHT THEME */
+[data-theme="light"]{--bg:#f1f5f9;--bg2:#e8edf5;--bg3:#dce3ee;--surface:rgba(232,237,245,0.98);--border:rgba(0,0,0,0.08);--border-hi:rgba(0,0,0,0.15);--text:#0f172a;--muted:#4a6280;}
+[data-theme="light"] body::before{background-image:linear-gradient(rgba(34,211,238,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,0.06) 1px,transparent 1px);}
 [data-theme="light"] .sc::after{border-color:transparent var(--bg) transparent transparent;}
 [data-theme="light"] .date-in,[data-theme="light"] .time-in,[data-theme="light"] .mi.time{color-scheme:light;}
 
 @keyframes mIn{from{opacity:0;transform:translateY(12px) scale(0.97);}to{opacity:1;transform:none;}}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
 @keyframes slideIn{from{opacity:0;transform:translateX(-8px);}to{opacity:1;transform:none;}}
-
 .task{animation:slideIn 0.18s ease-out;}
 
 @media(max-width:580px){
@@ -473,8 +354,6 @@ body::after{
   .lu-card{padding:28px 24px;}
   .lu-num{font-size:3.5rem;}
   .hd{flex-direction:column;}
-  .tabs{overflow-x:auto;}
-  .tab{white-space:nowrap;}
 }
 </style>
 </head>
@@ -488,25 +367,66 @@ body::after{
       <p class="mdesc">Enter your name to begin tracking habits and leveling up.</p>
       <input type="text" id="nameIn" class="mi" placeholder="Your name..." maxlength="24" autocomplete="off" style="margin-top:10px;"/>
     </div>
-    <div class="mf">
-      <button class="bp" id="nameOk">START</button>
-    </div>
+    <div class="mf"><button class="bp" id="nameOk">START</button></div>
   </div>
 </div>
 
 <!-- EDIT NAME MODAL -->
 <div class="ov" id="editNameOv">
   <div class="modal">
-    <div class="mh">
-      <span class="mt">// EDIT NAME</span>
-      <button class="mx" data-close="editNameOv">✕</button>
-    </div>
-    <div class="mb">
-      <input type="text" id="editNameIn" class="mi" placeholder="New name..." maxlength="24" autocomplete="off"/>
+    <div class="mh"><span class="mt">// EDIT NAME</span><button class="mx" data-close="editNameOv">✕</button></div>
+    <div class="mb"><input type="text" id="editNameIn" class="mi" placeholder="New name..." maxlength="24" autocomplete="off"/></div>
+    <div class="mf"><button class="bp" id="editNameOk">SAVE</button><button class="bs" data-close="editNameOv">CANCEL</button></div>
+  </div>
+</div>
+
+<!-- CREATE FOLDER MODAL -->
+<div class="ov" id="folderOv">
+  <div class="modal">
+    <div class="mh"><span class="mt">// NEW FOLDER</span><button class="mx" data-close="folderOv">✕</button></div>
+    <div class="mb" style="display:flex;flex-direction:column;gap:12px;">
+      <div>
+        <div class="mlabel">Folder name</div>
+        <input type="text" id="folderNameIn" class="mi" placeholder="e.g. Morning Routine..." maxlength="40" autocomplete="off"/>
+      </div>
+      <div>
+        <div class="mlabel">Icon (emoji)</div>
+        <input type="text" id="folderIconIn" class="mi" placeholder="📁" maxlength="4" style="font-size:1.4rem;text-align:center;"/>
+      </div>
+      <div>
+        <div class="mlabel">Color</div>
+        <div class="color-picker-row" id="colorPicker"></div>
+      </div>
     </div>
     <div class="mf">
-      <button class="bp" id="editNameOk">SAVE</button>
-      <button class="bs" data-close="editNameOv">CANCEL</button>
+      <button class="bp" id="folderOk">CREATE FOLDER</button>
+      <button class="bs" data-close="folderOv">CANCEL</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT FOLDER MODAL -->
+<div class="ov" id="editFolderOv">
+  <div class="modal">
+    <div class="mh"><span class="mt">// EDIT FOLDER</span><button class="mx" data-close="editFolderOv">✕</button></div>
+    <div class="mb" style="display:flex;flex-direction:column;gap:12px;">
+      <div>
+        <div class="mlabel">Folder name</div>
+        <input type="text" id="editFolderNameIn" class="mi" placeholder="Folder name..." maxlength="40" autocomplete="off"/>
+      </div>
+      <div>
+        <div class="mlabel">Icon (emoji)</div>
+        <input type="text" id="editFolderIconIn" class="mi" placeholder="📁" maxlength="4" style="font-size:1.4rem;text-align:center;"/>
+      </div>
+      <div>
+        <div class="mlabel">Color</div>
+        <div class="color-picker-row" id="editColorPicker"></div>
+      </div>
+    </div>
+    <div class="mf">
+      <button class="bp" id="editFolderOk">SAVE</button>
+      <button class="bdanger" id="deleteFolderBtn">DELETE FOLDER</button>
+      <button class="bs" data-close="editFolderOv">CANCEL</button>
     </div>
   </div>
 </div>
@@ -514,10 +434,7 @@ body::after{
 <!-- EDIT TASK MODAL -->
 <div class="ov" id="editTaskOv">
   <div class="modal">
-    <div class="mh">
-      <span class="mt">// EDIT TASK</span>
-      <button class="mx" data-close="editTaskOv">✕</button>
-    </div>
+    <div class="mh"><span class="mt">// EDIT TASK</span><button class="mx" data-close="editTaskOv">✕</button></div>
     <div class="mb" style="display:flex;flex-direction:column;gap:10px;">
       <div>
         <div class="mlabel">Task text</div>
@@ -535,6 +452,10 @@ body::after{
         <div class="mlabel">Date</div>
         <input type="date" id="editTaskDate" class="mi time"/>
       </div>
+      <div>
+        <div class="mlabel">Folder</div>
+        <select id="editTaskFolder" class="mi" style="cursor:pointer;"></select>
+      </div>
     </div>
     <div class="mf">
       <button class="bp" id="editTaskOk">SAVE</button>
@@ -546,10 +467,7 @@ body::after{
 <!-- REMINDER MODAL -->
 <div class="ov" id="remindOv">
   <div class="modal">
-    <div class="mh">
-      <span class="mt">// SET REMINDER</span>
-      <button class="mx" data-close="remindOv">✕</button>
-    </div>
+    <div class="mh"><span class="mt">// SET REMINDER</span><button class="mx" data-close="remindOv">✕</button></div>
     <div class="mb" style="display:flex;flex-direction:column;gap:10px;">
       <p class="mdesc">Set a daily reminder notification for this task.</p>
       <div>
@@ -569,35 +487,21 @@ body::after{
 <!-- SYNC MODAL -->
 <div class="ov" id="syncOv">
   <div class="modal">
-    <div class="mh">
-      <span class="mt">// SYNC DEVICE</span>
-      <button class="mx" data-close="syncOv">✕</button>
-    </div>
+    <div class="mh"><span class="mt">// SYNC DEVICE</span><button class="mx" data-close="syncOv">✕</button></div>
     <div class="mb">
       <p class="mdesc">Enter the 6-digit code from your other device to import your progress.</p>
       <input type="text" id="syncIn" class="mi code" placeholder="- - - - - -" maxlength="6" autocomplete="off" spellcheck="false" style="margin-top:12px;"/>
     </div>
-    <div class="mf">
-      <button class="bp" id="syncOk">IMPORT</button>
-      <button class="bs" data-close="syncOv">CANCEL</button>
-    </div>
+    <div class="mf"><button class="bp" id="syncOk">IMPORT</button><button class="bs" data-close="syncOv">CANCEL</button></div>
   </div>
 </div>
 
 <!-- RESET MODAL -->
 <div class="ov" id="resetOv">
   <div class="modal">
-    <div class="mh">
-      <span class="mt">// CONFIRM WIPE</span>
-      <button class="mx" data-close="resetOv">✕</button>
-    </div>
-    <div class="mb">
-      <div class="mwarn">⚠ This permanently deletes all XP, streak, levels, and tasks. Cannot be undone.</div>
-    </div>
-    <div class="mf">
-      <button class="bdanger" id="resetOk">WIPE EVERYTHING</button>
-      <button class="bs" data-close="resetOv">ABORT</button>
-    </div>
+    <div class="mh"><span class="mt">// CONFIRM WIPE</span><button class="mx" data-close="resetOv">✕</button></div>
+    <div class="mb"><div class="mwarn">⚠ This permanently deletes all XP, streak, levels, tasks, and folders. Cannot be undone.</div></div>
+    <div class="mf"><button class="bdanger" id="resetOk">WIPE EVERYTHING</button><button class="bs" data-close="resetOv">ABORT</button></div>
   </div>
 </div>
 
@@ -622,15 +526,14 @@ body::after{
       <span class="xp-label">Level Progress</span>
       <span class="xp-val" id="xpVal">0 / 250 XP</span>
     </div>
-    <div class="bar-track">
-      <div class="bar-fill xp" id="xpBar" style="width:0%"></div>
-    </div>
+    <div class="bar-track"><div class="bar-fill xp" id="xpBar" style="width:0%"></div></div>
   </div>
 
   <!-- TOOLBAR -->
   <div class="tb">
     <button class="btn-t" id="themeBtn">◑ THEME</button>
     <button class="btn-t" id="editNameBtn">✎ NAME</button>
+    <button class="btn-t" id="newFolderBtn">⊞ FOLDER</button>
     <button class="btn-t" id="genBtn">↑ GEN CODE</button>
     <button class="btn-t" id="syncBtn">↓ SYNC</button>
     <button class="btn-t danger" id="resetBtn">⊗ RESET</button>
@@ -678,8 +581,9 @@ body::after{
           <option value="once">One-Time</option>
           <option value="scheduled">Scheduled</option>
         </select>
-        <input type="date" id="taskDateIn" class="date-in hidden" />
-        <input type="time" id="taskTimeIn" class="time-in" placeholder="Reminder time" title="Optional reminder time"/>
+        <input type="date" id="taskDateIn" class="date-in hidden"/>
+        <input type="time" id="taskTimeIn" class="time-in" title="Optional reminder time"/>
+        <select id="taskFolderIn" class="folder-sel"></select>
       </div>
     </div>
 
@@ -692,7 +596,8 @@ body::after{
       <button class="tab" data-tab="missed">Missed <span class="cnt" id="cntMissed">0</span></button>
     </div>
 
-    <ul class="tl" id="taskList"></ul>
+    <!-- TASK LIST (folders + ungrouped) -->
+    <div id="taskList"></div>
     <div class="empty" id="empty">◈ &nbsp; No objectives here yet.</div>
 
     <div class="streak-warn" id="streakWarn">⚡ Streak at risk — complete your daily tasks before midnight!</div>
@@ -714,11 +619,10 @@ body::after{
 <!-- TOASTS -->
 <div class="tw" id="tw"></div>
 
-<!-- SCRIPTS -->
+<!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
-
 const firebaseConfig = {
   apiKey: "AIzaSyAGFef4gRn1fVv2yNq_Fbu6FoegX2yyvsI",
   authDomain: "leveluptaskcodesync.firebaseapp.com",
@@ -728,883 +632,796 @@ const firebaseConfig = {
   messagingSenderId: "462653665145",
   appId: "1:462653665145:web:f949a38106c40480e3c9a8"
 };
-
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-
 window._fbSet = (code, data) => set(ref(db, 'sync/' + code), data);
 window._fbGet = (code) => get(ref(db, 'sync/' + code)).then(s => s.exists() ? s.val() : null);
 window._fbReady = true;
 window.dispatchEvent(new Event('fb-ready'));
 </script>
-
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
 <script>
 // ══════════════════════════════════════════════════════════════════
+//  CONSTANTS
+// ══════════════════════════════════════════════════════════════════
+const XP_PER_TASK = 10, XP_PER_DAY = 100, XP_PER_LEVEL = 250;
+const FOLDER_COLORS = ['#f0a500','#22d3ee','#34d399','#a78bfa','#f87171','#fb923c','#e879f9','#38bdf8','#4ade80','#fbbf24'];
+const REWARDS = ['🚀 Productivity boost activated','💎 Rare motivation crystal found','🧠 Neural pathways reinforced','⚡ Dopamine combo achieved','🏆 Elite discipline badge earned','🔥 Momentum multiplier engaged','🎯 Precision focus unlocked','✨ Habit loop fully formed'];
+
+// ══════════════════════════════════════════════════════════════════
 //  STATE
 // ══════════════════════════════════════════════════════════════════
-let tasks = [];          // {id, text, type, done, xpAwarded, missed, date, remind, createdAt}
-let streak = 0;
-let points = 0;
-let level = 1;
-let lastCompletedDay = null;   // ISO date string "YYYY-MM-DD"
-let lastResetDay = null;        // ISO date string
-let displayName = '';
-let autoSync = false;
-let syncCode = null;            // last used sync code for auto-sync
+let tasks    = [];   // {id,text,type,done,xpAwarded,missed,date,remind,folderId,createdAt}
+let folders  = [];   // {id,name,icon,color,open,order}
+let streak   = 0, points = 0, level = 1;
+let lastCompletedDay = null, lastResetDay = null;
+let displayName = '', autoSync = false, syncCode = null;
 let confettiRunning = false;
-let editIdx = -1;
-let remindIdx = -1;
+let editTaskIdx = -1, remindTaskIdx = -1, editFolderIdx = -1;
 let currentTab = 'all';
 let autoSyncTimer = null;
-
-const XP_PER_TASK = 10;
-const XP_PER_DAY  = 100;
-const XP_PER_LEVEL = 250;
-
-const rewards = [
-  '🚀 Productivity boost activated',
-  '💎 Rare motivation crystal found',
-  '🧠 Neural pathways reinforced',
-  '⚡ Dopamine combo achieved',
-  '🏆 Elite discipline badge earned',
-  '🔥 Momentum multiplier engaged',
-  '🎯 Precision focus unlocked',
-  '✨ Habit loop fully formed'
-];
-
-self.addEventListener("install", () => {
-  self.skipWaiting();
-});
-
-self.addEventListener("push", event => {
-  const data = event.data ? event.data.json() : {};
-
-  event.waitUntil(
-    self.registration.showNotification(data.title || "Reminder", {
-      body: data.body || "You have a task",
-      icon: ""
-    })
-  );
-});
-
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js");
-}
-
-Notification.requestPermission();
-
+let selectedColor = FOLDER_COLORS[0];
+let editSelectedColor = FOLDER_COLORS[0];
+let sortables = {};  // folderId -> Sortable instance
 
 // ══════════════════════════════════════════════════════════════════
 //  UTILS
 // ══════════════════════════════════════════════════════════════════
 const $ = id => document.getElementById(id);
 const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const uid = () => Math.random().toString(36).slice(2,10) + Date.now().toString(36);
+const vibrate = (ms=30) => { if(navigator.vibrate) navigator.vibrate(ms); };
 
-function todayISO() {
-  const d = new Date();
+function todayISO(){
+  const d=new Date();
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 }
-
-function localResetHour() {
-  // Reset at 3 AM local time (represented as fraction of day — used to detect "new day")
-  const d = new Date();
-  const resetD = new Date(d);
-  resetD.setHours(3, 0, 0, 0);
-  // If it's before 3 AM, treat it as yesterday's "day"
-  if (d < resetD) {
-    resetD.setDate(resetD.getDate() - 1);
-  }
-  return resetD.getFullYear()+'-'+String(resetD.getMonth()+1).padStart(2,'0')+'-'+String(resetD.getDate()).padStart(2,'0');
-}
-
-function uid() {
-  return Math.random().toString(36).slice(2,10) + Date.now().toString(36);
-}
-
-function vibrate(ms = 30) {
-  if (navigator.vibrate) navigator.vibrate(ms);
+function localResetHour(){
+  const d=new Date(), r=new Date(d);
+  r.setHours(3,0,0,0);
+  if(d<r) r.setDate(r.getDate()-1);
+  return r.getFullYear()+'-'+String(r.getMonth()+1).padStart(2,'0')+'-'+String(r.getDate()).padStart(2,'0');
 }
 
 // ══════════════════════════════════════════════════════════════════
 //  TOAST
 // ══════════════════════════════════════════════════════════════════
-function toast(msg, type = '') {
-  const el = document.createElement('div');
-  el.className = 'toast' + (type ? ' ' + type : '');
-  el.textContent = msg;
+function toast(msg, type=''){
+  const el=document.createElement('div');
+  el.className='toast'+(type?' '+type:'');
+  el.textContent=msg;
   $('tw').appendChild(el);
-  requestAnimationFrame(() => setTimeout(() => el.classList.add('show'), 10));
-  setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 300); }, 2800);
+  requestAnimationFrame(()=>setTimeout(()=>el.classList.add('show'),10));
+  setTimeout(()=>{el.classList.remove('show');setTimeout(()=>el.remove(),300);},2800);
 }
 
 // ══════════════════════════════════════════════════════════════════
 //  MODALS
 // ══════════════════════════════════════════════════════════════════
-function openModal(id) { $(id).classList.add('show'); }
-function closeModal(id) { $(id).classList.remove('show'); }
-
-document.addEventListener('click', e => {
-  const cl = e.target.dataset.close;
-  if (cl) closeModal(cl);
-  if (e.target.classList.contains('ov') && e.target.id !== 'nameOv') e.target.classList.remove('show');
+function openModal(id){$(id).classList.add('show');}
+function closeModal(id){$(id).classList.remove('show');}
+document.addEventListener('click',e=>{
+  const cl=e.target.dataset.close;
+  if(cl) closeModal(cl);
+  if(e.target.classList.contains('ov')&&e.target.id!=='nameOv') e.target.classList.remove('show');
 });
+
+// ══════════════════════════════════════════════════════════════════
+//  COLOR PICKERS
+// ══════════════════════════════════════════════════════════════════
+function buildColorPicker(containerId, current, onSelect){
+  const c=$(containerId);
+  c.innerHTML='';
+  FOLDER_COLORS.forEach(col=>{
+    const sw=document.createElement('div');
+    sw.className='cp-swatch'+(col===current?' sel':'');
+    sw.style.background=col;
+    sw.title=col;
+    sw.addEventListener('click',()=>{
+      c.querySelectorAll('.cp-swatch').forEach(s=>s.classList.remove('sel'));
+      sw.classList.add('sel');
+      onSelect(col);
+    });
+    c.appendChild(sw);
+  });
+}
 
 // ══════════════════════════════════════════════════════════════════
 //  PERSIST
 // ══════════════════════════════════════════════════════════════════
-function buildPayload() {
-  return { displayName, tasks, streak, points, level, lastCompletedDay, lastResetDay, autoSync, syncCode,
-           theme: document.body.dataset.theme || 'dark' };
+function normalizeTask(t){
+  return {id:t.id||uid(),text:t.text||'',type:t.type||'daily',done:!!t.done,xpAwarded:!!t.xpAwarded,missed:!!t.missed,date:t.date||null,remind:t.remind||null,folderId:t.folderId||null,createdAt:t.createdAt||Date.now()};
 }
-
-function save() {
-  localStorage.setItem('lu2', JSON.stringify(buildPayload()));
+function normalizeFolder(f){
+  return {id:f.id||uid(),name:f.name||'Folder',icon:f.icon||'📁',color:f.color||FOLDER_COLORS[0],open:f.open!==undefined?f.open:true,order:f.order||0};
 }
-
-function load() {
-  const d = JSON.parse(localStorage.getItem('lu2') || 'null');
-  if (!d) return false;
-  displayName    = d.displayName || '';
-  tasks          = (d.tasks || []).map(normalizeTask);
-  streak         = d.streak || 0;
-  points         = d.points || 0;
-  level          = d.level || 1;
-  lastCompletedDay = d.lastCompletedDay || null;
-  lastResetDay   = d.lastResetDay || null;
-  autoSync       = d.autoSync || false;
-  syncCode       = d.syncCode || null;
-  if (d.theme === 'light') document.body.dataset.theme = 'light';
+function buildPayload(){
+  return {displayName,tasks,folders,streak,points,level,lastCompletedDay,lastResetDay,autoSync,syncCode,theme:document.body.dataset.theme||'dark'};
+}
+function save(){
+  localStorage.setItem('lu3',JSON.stringify(buildPayload()));
+}
+function load(){
+  const raw=localStorage.getItem('lu3')||localStorage.getItem('lu2')||localStorage.getItem('lu')||'null';
+  const d=JSON.parse(raw);
+  if(!d) return false;
+  displayName=d.displayName||'';
+  tasks=(d.tasks||[]).map(normalizeTask);
+  folders=(d.folders||[]).map(normalizeFolder);
+  streak=d.streak||0;points=d.points||0;level=d.level||1;
+  lastCompletedDay=d.lastCompletedDay||null;
+  lastResetDay=d.lastResetDay||null;
+  autoSync=d.autoSync||false;syncCode=d.syncCode||null;
+  if(d.theme==='light') document.body.dataset.theme='light';
   return true;
 }
-
-function applyPayload(d) {
-  displayName    = d.displayName || '';
-  tasks          = (d.tasks || []).map(normalizeTask);
-  streak         = d.streak || 0;
-  points         = d.points || 0;
-  level          = d.level || 1;
-  lastCompletedDay = d.lastCompletedDay || null;
-  lastResetDay   = d.lastResetDay || null;
-  if (d.autoSync !== undefined) autoSync = d.autoSync;
-  if (d.syncCode) syncCode = d.syncCode;
+function applyPayload(d){
+  displayName=d.displayName||'';
+  tasks=(d.tasks||[]).map(normalizeTask);
+  folders=(d.folders||[]).map(normalizeFolder);
+  streak=d.streak||0;points=d.points||0;level=d.level||1;
+  lastCompletedDay=d.lastCompletedDay||null;
+  lastResetDay=d.lastResetDay||null;
+  if(d.autoSync!==undefined) autoSync=d.autoSync;
+  if(d.syncCode) syncCode=d.syncCode;
   save();
-}
-
-function normalizeTask(t) {
-  return {
-    id: t.id || uid(),
-    text: t.text || '',
-    type: t.type || 'daily',
-    done: !!t.done,
-    xpAwarded: !!t.xpAwarded,
-    missed: !!t.missed,
-    date: t.date || null,
-    remind: t.remind || null,
-    createdAt: t.createdAt || Date.now()
-  };
 }
 
 // ══════════════════════════════════════════════════════════════════
 //  FIREBASE SYNC
 // ══════════════════════════════════════════════════════════════════
-function makeCode() {
-  const ch = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
-  let s = ''; for (let i = 0; i < 6; i++) s += ch[Math.floor(Math.random() * ch.length)];
+function makeCode(){
+  const ch='23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+  let s='';for(let i=0;i<6;i++) s+=ch[Math.floor(Math.random()*ch.length)];
   return s;
 }
-
-function setSyncUI(state, msg) {
-  const row = $('syncRow');
-  const dot = $('syncDot');
-  const lbl = $('syncLbl');
-  row.style.display = 'flex';
-  dot.className = 'sync-dot ' + state;
-  lbl.className = 'sync-lbl ' + state;
-  lbl.textContent = msg;
+function setSyncUI(state,msg){
+  const row=$('syncRow'),dot=$('syncDot'),lbl=$('syncLbl');
+  row.style.display='flex';
+  dot.className='sync-dot '+state;
+  lbl.className='sync-lbl '+state;
+  lbl.textContent=msg;
 }
-
-async function generateSyncCode() {
-  if (!window._fbReady) { toast('Firebase not ready yet', 'r'); return; }
+async function generateSyncCode(){
+  if(!window._fbReady){toast('Firebase not ready','r');return;}
   save();
-  const code = makeCode();
-  syncCode = code;
-  save();
-  setSyncUI('syncing', 'Uploading...');
-  try {
-    await window._fbSet(code, buildPayload());
-    $('scodeVal').textContent = code;
-    $('sbadge').classList.add('show');
-    setSyncUI('ok', '✓ Code ready');
-    toast('Code: ' + code, 'a');
-  } catch (e) {
-    setSyncUI('err', 'Upload failed');
-    toast('Upload failed', 'r');
-  }
+  const code=makeCode();syncCode=code;save();
+  setSyncUI('syncing','Uploading...');
+  try{
+    await window._fbSet(code,buildPayload());
+    $('scodeVal').textContent=code;$('sbadge').classList.add('show');
+    setSyncUI('ok','✓ Code ready');toast('Code: '+code,'a');
+  }catch(e){setSyncUI('err','Upload failed');toast('Upload failed','r');}
 }
-
-async function importByCode(code) {
-  if (!window._fbReady) { toast('Firebase not ready', 'r'); return; }
-  code = code.trim().toUpperCase();
-  if (code.length !== 6) { toast('Enter a valid 6-character code', 'r'); return; }
-  setSyncUI('syncing', 'Fetching...');
-  try {
-    const data = await window._fbGet(code);
-    if (!data) { setSyncUI('err', 'Code not found'); toast('Code not found', 'r'); return; }
-    applyPayload(data);
-    syncCode = code;
-    save();
-    closeModal('syncOv');
-    setSyncUI('ok', '✓ Synced');
-    toast('Sync complete!', 'g');
-    updateAll();
-    $('tagline').textContent = `Welcome back, ${displayName}.`;
-    setTimeout(() => { if ($('syncLbl').textContent === '✓ Synced') setSyncUI('ok', '✓ Auto-sync active'); }, 4000);
-  } catch (e) {
-    setSyncUI('err', 'Sync failed');
-    toast('Sync failed', 'r');
-  }
+async function importByCode(code){
+  if(!window._fbReady){toast('Firebase not ready','r');return;}
+  code=code.trim().toUpperCase();
+  if(code.length!==6){toast('Enter a valid 6-character code','r');return;}
+  setSyncUI('syncing','Fetching...');
+  try{
+    const data=await window._fbGet(code);
+    if(!data){setSyncUI('err','Code not found');toast('Code not found','r');return;}
+    applyPayload(data);syncCode=code;save();
+    closeModal('syncOv');setSyncUI('ok','✓ Synced');toast('Sync complete!','g');
+    updateAll();$('tagline').textContent=`Welcome back, ${displayName}.`;
+    setTimeout(()=>{if($('syncLbl').textContent==='✓ Synced') setSyncUI('ok','✓ Auto-sync active');},4000);
+  }catch(e){setSyncUI('err','Sync failed');toast('Sync failed','r');}
 }
-
-async function autoSyncNow() {
-  if (!autoSync || !syncCode || !window._fbReady) return;
-  setSyncUI('syncing', 'Syncing...');
-  try {
-    await window._fbSet(syncCode, buildPayload());
-    setSyncUI('ok', '✓ Synced');
-  } catch (e) {
-    setSyncUI('err', 'Sync failed');
-  }
+async function autoSyncNow(){
+  if(!autoSync||!syncCode||!window._fbReady) return;
+  setSyncUI('syncing','Syncing...');
+  try{await window._fbSet(syncCode,buildPayload());setSyncUI('ok','✓ Synced');}
+  catch(e){setSyncUI('err','Sync failed');}
 }
-
-function scheduleAutoSync() {
+function scheduleAutoSync(){
   clearTimeout(autoSyncTimer);
-  if (autoSync && syncCode) {
-    autoSyncTimer = setTimeout(autoSyncNow, 1500);
-  }
+  if(autoSync&&syncCode) autoSyncTimer=setTimeout(autoSyncNow,1500);
 }
 
 // ══════════════════════════════════════════════════════════════════
-//  DAILY RESET  (3 AM local)
+//  DAILY RESET
 // ══════════════════════════════════════════════════════════════════
-function dailyReset() {
-  const effectiveToday = localResetHour();
-
-  if (lastResetDay === effectiveToday) return; // already reset today
-
-  // Check for missed streak
-  if (lastCompletedDay) {
-    const last = new Date(lastCompletedDay + 'T03:00:00');
-    const now  = new Date(effectiveToday  + 'T03:00:00');
-    const diffDays = Math.round((now - last) / 86400000);
-    if (diffDays > 1) {
-      streak = 0;
-      // No toast here — we'll surface it in UI
-    }
+function dailyReset(){
+  const today=localResetHour();
+  if(lastResetDay===today) return;
+  if(lastCompletedDay){
+    const last=new Date(lastCompletedDay+'T03:00:00');
+    const now=new Date(today+'T03:00:00');
+    if(Math.round((now-last)/86400000)>1){streak=0;}
   }
-
-  // Mark unfinished daily/scheduled tasks as missed
-  tasks.forEach(t => {
-    if (t.done) return;
-    if (t.missed) return;
-    if (t.type === 'daily') {
-      t.missed = true;
-    }
-    if (t.type === 'scheduled' && t.date && t.date < effectiveToday) {
-      t.missed = true;
-    }
+  tasks.forEach(t=>{
+    if(t.done) return;
+    if(t.missed) return;
+    if(t.type==='daily') t.missed=true;
+    if(t.type==='scheduled'&&t.date&&t.date<today) t.missed=true;
   });
-
-  // Reset daily tasks
-  tasks.forEach(t => {
-    if (t.type === 'daily') {
-      t.done = false;
-      t.xpAwarded = false;
-      t.missed = false; // fresh slate for the new day
-    }
+  tasks.forEach(t=>{
+    if(t.type==='daily'){t.done=false;t.xpAwarded=false;t.missed=false;}
   });
-
-  lastResetDay = effectiveToday;
-  save();
+  lastResetDay=today;save();
 }
 
 // ══════════════════════════════════════════════════════════════════
 //  XP / LEVEL
 // ══════════════════════════════════════════════════════════════════
-function recalcLevel() {
-  level = Math.max(1, Math.floor(points / XP_PER_LEVEL) + 1);
-}
+function recalcLevel(){level=Math.max(1,Math.floor(points/XP_PER_LEVEL)+1);}
 
 // ══════════════════════════════════════════════════════════════════
-//  MILESTONE  (all tasks complete)
+//  MILESTONE
 // ══════════════════════════════════════════════════════════════════
-function checkMilestone() {
-  const today = localResetHour();
-  if (lastCompletedDay === today) return;
-
-  // Only count daily tasks (and today's scheduled tasks) for milestone
-  const relevant = tasks.filter(t =>
-    !t.missed && (t.type === 'daily' || (t.type === 'scheduled' && t.date === today))
-  );
-  if (relevant.length === 0) return;
-  if (!relevant.every(t => t.done)) return;
-
-  const oldLevel = level;
-  streak++;
-  points += XP_PER_DAY;
-  recalcLevel();
-  lastCompletedDay = today;
-  save();
-
-  if (level > oldLevel && !confettiRunning) celebrate(level);
-  const rw = rewards[Math.floor(Math.random() * rewards.length)];
-  $('reward').textContent = '⚡ ' + rw;
+function checkMilestone(){
+  const today=localResetHour();
+  if(lastCompletedDay===today) return;
+  const relevant=tasks.filter(t=>!t.missed&&(t.type==='daily'||(t.type==='scheduled'&&t.date===today)));
+  if(!relevant.length||!relevant.every(t=>t.done)) return;
+  const oldLevel=level;
+  streak++;points+=XP_PER_DAY;recalcLevel();lastCompletedDay=today;save();
+  if(level>oldLevel&&!confettiRunning) celebrate(level);
+  $('reward').textContent='⚡ '+REWARDS[Math.floor(Math.random()*REWARDS.length)];
   $('reward').classList.add('show');
-  toast('All tasks done! +' + XP_PER_DAY + ' XP', 'g');
-  vibrate(60);
+  toast('All tasks done! +'+XP_PER_DAY+' XP','g');vibrate(60);
 }
 
 // ══════════════════════════════════════════════════════════════════
 //  CELEBRATE
 // ══════════════════════════════════════════════════════════════════
-function celebrate(lvl) {
-  confettiRunning = true;
-  $('luNum').textContent = lvl;
-  $('luOv').classList.add('show');
-  const end = Date.now() + 1600;
-  const iv = setInterval(() => {
-    if (Date.now() > end) {
-      clearInterval(iv); confettiRunning = false;
-      $('luOv').classList.remove('show'); return;
-    }
-    if (typeof confetti === 'function') {
-      confetti({ particleCount: 80, spread: 130,
-        origin: { x: Math.random(), y: Math.random() - 0.1 },
-        colors: ['#f0a500','#22d3ee','#34d399','#ffffff'] });
-    }
-  }, 200);
+function celebrate(lvl){
+  confettiRunning=true;$('luNum').textContent=lvl;$('luOv').classList.add('show');
+  const end=Date.now()+1600;
+  const iv=setInterval(()=>{
+    if(Date.now()>end){clearInterval(iv);confettiRunning=false;$('luOv').classList.remove('show');return;}
+    if(typeof confetti==='function') confetti({particleCount:80,spread:130,origin:{x:Math.random(),y:Math.random()-0.1},colors:['#f0a500','#22d3ee','#34d399','#ffffff']});
+  },200);
 }
 
 // ══════════════════════════════════════════════════════════════════
 //  STREAK WARNING
 // ══════════════════════════════════════════════════════════════════
-function updateStreakWarning() {
-  const today = localResetHour();
-  if (lastCompletedDay === today) { $('streakWarn').classList.remove('show'); return; }
-  const h = new Date().getHours();
-  const hasPending = tasks.some(t => !t.done && !t.missed &&
-    (t.type === 'daily' || (t.type === 'scheduled' && t.date === today)));
-  // Warn after 8 PM if streak > 0 and tasks remain
-  if (h >= 20 && streak > 0 && hasPending) {
-    $('streakWarn').classList.add('show');
-  } else {
-    $('streakWarn').classList.remove('show');
-  }
+function updateStreakWarning(){
+  const today=localResetHour();
+  if(lastCompletedDay===today){$('streakWarn').classList.remove('show');return;}
+  const h=new Date().getHours();
+  const hasPending=tasks.some(t=>!t.done&&!t.missed&&(t.type==='daily'||(t.type==='scheduled'&&t.date===today)));
+  $('streakWarn').classList.toggle('show',h>=20&&streak>0&&hasPending);
 }
 
 // ══════════════════════════════════════════════════════════════════
 //  NOTIFICATIONS
 // ══════════════════════════════════════════════════════════════════
-const notifScheduled = new Set();
-
-async function requestNotifPermission() {
-  if (!('Notification' in window)) return false;
-  if (Notification.permission === 'granted') return true;
-  if (Notification.permission === 'denied') return false;
-  const result = await Notification.requestPermission();
-  return result === 'granted';
+const notifScheduled=new Set();
+async function requestNotifPermission(){
+  if(!('Notification' in window)) return false;
+  if(Notification.permission==='granted') return true;
+  if(Notification.permission==='denied') return false;
+  return (await Notification.requestPermission())==='granted';
 }
-
-function scheduleNotification(task) {
-  if (!task.remind || !('Notification' in window)) return;
-  const [hh, mm] = task.remind.split(':').map(Number);
-  const now = new Date();
-  const fire = new Date();
-  fire.setHours(hh, mm, 0, 0);
-  if (fire <= now) fire.setDate(fire.getDate() + 1);
-  const ms = fire - now;
-  if (notifScheduled.has(task.id)) return;
+function scheduleNotification(task){
+  if(!task.remind||!('Notification' in window)) return;
+  const [hh,mm]=task.remind.split(':').map(Number);
+  const now=new Date(),fire=new Date();
+  fire.setHours(hh,mm,0,0);
+  if(fire<=now) fire.setDate(fire.getDate()+1);
+  if(notifScheduled.has(task.id)) return;
   notifScheduled.add(task.id);
-  setTimeout(() => {
+  setTimeout(()=>{
     notifScheduled.delete(task.id);
-    if (Notification.permission !== 'granted') return;
-    if (task.done) return; // already done, skip
-    new Notification('LevelUp — Task Reminder', {
-      body: task.text,
-      icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="%2307090f"/><text x="32" y="46" text-anchor="middle" font-size="40">⚡</text></svg>',
-      badge: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="%23f0a500"/></svg>',
-      tag: 'levelup-' + task.id,
-    });
-    // Reschedule for next day
+    if(Notification.permission!=='granted'||task.done) return;
+    new Notification('LevelUp — Task Reminder',{body:task.text,tag:'levelup-'+task.id});
     scheduleNotification(task);
-  }, ms);
+  },fire-now);
 }
-
-function rescheduleAllNotifications() {
+function rescheduleAllNotifications(){
   notifScheduled.clear();
-  if (Notification.permission !== 'granted') return;
-  tasks.forEach(t => { if (t.remind) scheduleNotification(t); });
+  if(Notification.permission!=='granted') return;
+  tasks.forEach(t=>{if(t.remind) scheduleNotification(t);});
 }
 
 // ══════════════════════════════════════════════════════════════════
-//  RENDER
+//  FOLDER SELECT OPTIONS
 // ══════════════════════════════════════════════════════════════════
-function getFilteredTasks() {
-  const today = localResetHour();
-  if (currentTab === 'all') return tasks.filter(t => {
-    if (t.type === 'scheduled' && t.date && t.date !== today && !t.missed) return false;
-    return true;
+function updateFolderSelects(){
+  const selects=['taskFolderIn','editTaskFolder'];
+  selects.forEach(sid=>{
+    const sel=$(sid);
+    if(!sel) return;
+    const cur=sel.value;
+    sel.innerHTML='<option value="">No Folder</option>';
+    folders.forEach(f=>{
+      const opt=document.createElement('option');
+      opt.value=f.id;opt.textContent=f.icon+' '+f.name;
+      sel.appendChild(opt);
+    });
+    sel.value=cur||'';
   });
-  if (currentTab === 'daily') return tasks.filter(t => t.type === 'daily');
-  if (currentTab === 'once') return tasks.filter(t => t.type === 'once');
-  if (currentTab === 'scheduled') return tasks.filter(t => t.type === 'scheduled');
-  if (currentTab === 'missed') return tasks.filter(t => t.missed);
-  return tasks;
 }
 
-function renderTasks() {
-  const list = $('taskList');
-  const filtered = getFilteredTasks();
-  list.innerHTML = '';
-  $('empty').style.display = filtered.length ? 'none' : 'block';
+// ══════════════════════════════════════════════════════════════════
+//  FILTER TASKS
+// ══════════════════════════════════════════════════════════════════
+function getFilteredTasks(){
+  const today=localResetHour();
+  let list=tasks;
+  if(currentTab==='all') list=tasks.filter(t=>!(t.type==='scheduled'&&t.date&&t.date!==today&&!t.missed));
+  else if(currentTab==='daily') list=tasks.filter(t=>t.type==='daily');
+  else if(currentTab==='once') list=tasks.filter(t=>t.type==='once');
+  else if(currentTab==='scheduled') list=tasks.filter(t=>t.type==='scheduled');
+  else if(currentTab==='missed') list=tasks.filter(t=>t.missed);
+  return list;
+}
 
-  filtered.forEach(task => {
-    const i = tasks.indexOf(task);
-    const li = document.createElement('li');
-    let cls = 'task type-' + task.type;
-    if (task.done) cls += ' done';
-    if (task.missed) cls += ' missed';
-    li.className = cls;
-    li.dataset.id = task.id;
+// ══════════════════════════════════════════════════════════════════
+//  RENDER TASK ELEMENT
+// ══════════════════════════════════════════════════════════════════
+function createTaskEl(task){
+  const i=tasks.indexOf(task);
+  const today=localResetHour();
+  const li=document.createElement('li');
+  let cls='task type-'+task.type;
+  if(task.done) cls+=' done';
+  if(task.missed) cls+=' missed';
+  li.className=cls;
+  li.dataset.id=task.id;
 
-    // Badges
-    let badges = `<span class="type-badge badge-${task.type}">${task.type === 'daily' ? 'Daily' : task.type === 'once' ? 'One-Time' : 'Scheduled'}</span>`;
-    if (task.missed) badges += '<span class="type-badge badge-missed">MISSED</span>';
-    if (task.type === 'scheduled' && task.date) {
-      const today = localResetHour();
-      if (task.date < today && !task.done) badges += '<span class="type-badge badge-overdue">OVERDUE</span>';
+  let badges=`<span class="type-badge badge-${task.type}">${task.type==='daily'?'Daily':task.type==='once'?'One-Time':'Scheduled'}</span>`;
+  if(task.missed) badges+='<span class="type-badge badge-missed">MISSED</span>';
+  if(task.type==='scheduled'&&task.date&&task.date<today&&!task.done) badges+='<span class="type-badge badge-overdue">OVERDUE</span>';
+
+  const dateStr=task.date?`<span class="task-date">📅 ${task.date}</span>`:'';
+  const remindStr=task.remind?`<span class="task-remind set">🔔 ${task.remind}</span>`:`<span class="task-remind">🔔 —</span>`;
+
+  li.innerHTML=`
+    <div class="drag-handle" title="Drag to reorder">⋮⋮</div>
+    <input type="checkbox" class="tcb" ${task.done||task.missed?'checked':''} ${task.missed?'disabled':''}>
+    <div class="task-body">
+      <span class="tt">${esc(task.text)}</span>
+      <div class="task-meta">${badges}${dateStr}${remindStr}</div>
+    </div>
+    <div class="ta">
+      <button class="ib remind" title="Set reminder">🔔</button>
+      <button class="ib" data-action="edit" title="Edit">✎</button>
+      <button class="ib del" data-action="del" title="Delete">✕</button>
+    </div>`;
+
+  li.querySelector('.tcb').addEventListener('change',e=>{e.stopPropagation();handleCheck(i,e.target.checked);});
+  li.querySelector('.remind').addEventListener('click',e=>{e.stopPropagation();openRemindModal(i);});
+  li.querySelector('[data-action="edit"]').addEventListener('click',e=>{e.stopPropagation();openEditTaskModal(i);});
+  li.querySelector('[data-action="del"]').addEventListener('click',e=>{e.stopPropagation();deleteTask(i);});
+  return li;
+}
+
+// ══════════════════════════════════════════════════════════════════
+//  RENDER MAIN LIST (folders + ungrouped)
+// ══════════════════════════════════════════════════════════════════
+function renderTasks(){
+  // Destroy old sortable instances
+  Object.values(sortables).forEach(s=>{try{s.destroy();}catch(e){}});
+  sortables={};
+
+  const container=$('taskList');
+  container.innerHTML='';
+  const filtered=getFilteredTasks();
+
+  // Group by folder
+  const folderMap={};
+  folders.forEach(f=>{ folderMap[f.id]=[]; });
+  const ungrouped=[];
+
+  filtered.forEach(task=>{
+    if(task.folderId&&folderMap[task.folderId]){
+      folderMap[task.folderId].push(task);
+    } else {
+      ungrouped.push(task);
     }
+  });
 
-    const dateStr = task.date ? `<span class="task-date">📅 ${task.date}</span>` : '';
-    const remindStr = task.remind
-      ? `<span class="task-remind set">🔔 ${task.remind}</span>`
-      : `<span class="task-remind">🔔 —</span>`;
+  let anyVisible=false;
 
-    li.innerHTML = `
-      <div class="drag-handle" title="Drag to reorder">⋮⋮</div>
-      <input type="checkbox" class="tcb" ${task.done || task.missed ? 'checked' : ''} ${task.missed ? 'disabled' : ''}>
-      <div class="task-body">
-        <span class="tt">${esc(task.text)}</span>
-        <div class="task-meta">
-          ${badges}
-          ${dateStr}
-          ${remindStr}
+  // Render folders (only those that have tasks in current filter, or always in "all" tab)
+  const sortedFolders=[...folders].sort((a,b)=>a.order-b.order);
+
+  sortedFolders.forEach(folder=>{
+    const folderTasks=folderMap[folder.id]||[];
+    // In filtered tabs, only show folder if it has tasks
+    if(currentTab!=='all'&&folderTasks.length===0) return;
+    anyVisible=true;
+
+    const block=document.createElement('div');
+    block.className='folder-block';
+    block.dataset.fid=folder.id;
+
+    // Progress stats
+    const total=folderTasks.length;
+    const done=folderTasks.filter(t=>t.done).length;
+    const pct=total?Math.round(done/total*100):0;
+    const progW=total?pct:0;
+
+    block.innerHTML=`
+      <div class="folder-header${folder.open?' open':''}" data-fid="${folder.id}">
+        <div class="folder-arrow">▶</div>
+        <div class="folder-icon">${esc(folder.icon)}</div>
+        <div class="folder-name">${esc(folder.name)}</div>
+        <div class="folder-meta">
+          <div class="folder-mini-bar"><div class="folder-mini-fill" style="width:${progW}%;background:${folder.color}"></div></div>
+          <div class="folder-prog"><span class="done-count">${done}</span>/${total}</div>
+        </div>
+        <div class="folder-actions">
+          <button class="ib" data-folder-edit="${folder.id}" title="Edit folder" style="font-size:0.65rem;">✎</button>
         </div>
       </div>
-      <div class="ta">
-        <button class="ib remind" title="Set reminder">🔔</button>
-        <button class="ib" data-action="edit" title="Edit">✎</button>
-        <button class="ib del" data-action="del" title="Delete">✕</button>
-      </div>
-    `;
+      <div class="folder-body${folder.open?' open':''}">
+        <ul class="folder-tasks" data-fid="${folder.id}"></ul>
+        ${folderTasks.length===0?'<div class="folder-empty">◈ &nbsp; No tasks in this folder yet.</div>':''}
+      </div>`;
 
-    // Checkbox
-    const cb = li.querySelector('.tcb');
-    cb.addEventListener('change', e => {
-      e.stopPropagation();
-      handleCheck(i, e.target.checked);
-    });
+    // Apply folder accent color
+    block.querySelector('.folder-header').style.borderLeftColor=folder.color;
 
-    // Buttons
-    li.querySelector('.remind').addEventListener('click', e => {
-      e.stopPropagation();
-      openRemindModal(i);
-    });
-    li.querySelector('[data-action="edit"]').addEventListener('click', e => {
-      e.stopPropagation();
-      openEditModal(i);
-    });
-    li.querySelector('[data-action="del"]').addEventListener('click', e => {
-      e.stopPropagation();
-      deleteTask(i);
+    // Toggle open/close
+    block.querySelector('.folder-header').addEventListener('click',e=>{
+      if(e.target.closest('.folder-actions')) return;
+      folder.open=!folder.open;
+      const hdr=block.querySelector('.folder-header');
+      const body=block.querySelector('.folder-body');
+      hdr.classList.toggle('open',folder.open);
+      body.classList.toggle('open',folder.open);
+      save();scheduleAutoSync();
     });
 
-    list.appendChild(li);
+    // Edit button
+    const editBtn=block.querySelector('[data-folder-edit]');
+    editBtn.addEventListener('click',e=>{
+      e.stopPropagation();
+      openEditFolderModal(folders.indexOf(folder));
+    });
+
+    // Render tasks inside folder
+    const taskList=block.querySelector('.folder-tasks');
+    folderTasks.forEach(task=>taskList.appendChild(createTaskEl(task)));
+
+    // Sortable for folder tasks
+    if(folderTasks.length>0){
+      sortables[folder.id]=new Sortable(taskList,{
+        animation:150,handle:'.drag-handle',draggable:'.task',
+        ghostClass:'sortable-ghost',chosenClass:'sortable-chosen',dragClass:'sortable-drag',
+        forceFallback:true,fallbackOnBody:true,swapThreshold:0.65,
+        touchStartThreshold:4,delay:100,delayOnTouchOnly:true,
+        scroll:true,scrollSensitivity:80,scrollSpeed:12,bubbleScroll:true,
+        group:'tasks',
+        onStart:()=>{document.body.style.userSelect='none';document.body.style.webkitUserSelect='none';vibrate(30);},
+        onEnd:evt=>{
+          document.body.style.userSelect='';document.body.style.webkitUserSelect='';
+          const fromFid=evt.from.dataset.fid;
+          const toFid=evt.to.dataset.fid||null;
+          const movedId=evt.item.dataset.id;
+          const movedTask=tasks.find(t=>t.id===movedId);
+          if(!movedTask) return;
+          // Update folder assignment
+          movedTask.folderId=toFid||null;
+          // Reorder within tasks array based on visual order
+          reorderFromDom();
+          vibrate(20);
+        }
+      });
+    }
+
+    container.appendChild(block);
   });
+
+  // Ungrouped section
+  if(ungrouped.length>0){
+    anyVisible=true;
+    if(folders.length>0){
+      const lbl=document.createElement('div');
+      lbl.className='ungrouped-label';
+      lbl.textContent='Ungrouped';
+      container.appendChild(lbl);
+    }
+    const ul=document.createElement('ul');
+    ul.className='tl';
+    ul.id='ungroupedList';
+    ungrouped.forEach(task=>ul.appendChild(createTaskEl(task)));
+    container.appendChild(ul);
+
+    sortables['ungrouped']=new Sortable(ul,{
+      animation:150,handle:'.drag-handle',draggable:'.task',
+      ghostClass:'sortable-ghost',chosenClass:'sortable-chosen',dragClass:'sortable-drag',
+      forceFallback:true,fallbackOnBody:true,swapThreshold:0.65,
+      touchStartThreshold:4,delay:100,delayOnTouchOnly:true,
+      scroll:true,scrollSensitivity:80,scrollSpeed:12,bubbleScroll:true,
+      group:'tasks',
+      onStart:()=>{document.body.style.userSelect='none';document.body.style.webkitUserSelect='none';vibrate(30);},
+      onEnd:evt=>{
+        document.body.style.userSelect='';document.body.style.webkitUserSelect='';
+        const toFid=evt.to.dataset.fid||null;
+        const movedId=evt.item.dataset.id;
+        const movedTask=tasks.find(t=>t.id===movedId);
+        if(!movedTask) return;
+        movedTask.folderId=toFid||null;
+        reorderFromDom();
+        vibrate(20);
+      }
+    });
+  }
+
+  $('empty').style.display=anyVisible?'none':'block';
+}
+
+// Sync tasks array order from current DOM
+function reorderFromDom(){
+  const allIds=[];
+  // Folder tasks
+  document.querySelectorAll('.folder-tasks').forEach(ul=>{
+    ul.querySelectorAll('.task').forEach(li=>allIds.push(li.dataset.id));
+  });
+  // Ungrouped tasks
+  const ug=document.getElementById('ungroupedList');
+  if(ug) ug.querySelectorAll('.task').forEach(li=>allIds.push(li.dataset.id));
+
+  // Rebuild tasks array in that order (tasks not visible in current filter keep their relative position)
+  const orderedVisible=allIds.map(id=>tasks.find(t=>t.id===id)).filter(Boolean);
+  const hidden=tasks.filter(t=>!allIds.includes(t.id));
+  tasks=[...orderedVisible,...hidden];
+  save();scheduleAutoSync();
 }
 
 // ══════════════════════════════════════════════════════════════════
-//  TASK ACTIONS
+//  HANDLE CHECK
 // ══════════════════════════════════════════════════════════════════
-function handleCheck(i, checked) {
-  const task = tasks[i];
-  if (!task) return;
-  const oldLevel = level;
-
-  if (checked && !task.xpAwarded) {
-    task.done = true;
-    task.xpAwarded = true;
-    points += XP_PER_TASK;
-    recalcLevel();
-    vibrate(25);
-    // Flash animation
-    const el = $('taskList').querySelector(`[data-id="${task.id}"]`);
-    if (el) { el.classList.add('flash'); setTimeout(() => el.classList.remove('flash'), 500); }
-    if (level > oldLevel && !confettiRunning) celebrate(level);
+function handleCheck(i,checked){
+  const task=tasks[i];if(!task) return;
+  const oldLevel=level;
+  if(checked&&!task.xpAwarded){
+    task.done=true;task.xpAwarded=true;points+=XP_PER_TASK;recalcLevel();vibrate(25);
+    const el=document.querySelector(`.task[data-id="${task.id}"]`);
+    if(el){el.classList.add('flash');setTimeout(()=>el.classList.remove('flash'),500);}
+    if(level>oldLevel&&!confettiRunning) celebrate(level);
     checkMilestone();
-  } else if (!checked && task.xpAwarded) {
-    task.done = false;
-    task.xpAwarded = false;
-    points = Math.max(0, points - XP_PER_TASK);
-    // If today's milestone was already awarded, roll it back
-    const today = localResetHour();
-    if (lastCompletedDay === today) {
-      streak = Math.max(0, streak - 1);
-      points = Math.max(0, points - XP_PER_DAY);
-      lastCompletedDay = null;
-      $('reward').classList.remove('show');
+  } else if(!checked&&task.xpAwarded){
+    task.done=false;task.xpAwarded=false;points=Math.max(0,points-XP_PER_TASK);
+    const today=localResetHour();
+    if(lastCompletedDay===today){
+      streak=Math.max(0,streak-1);points=Math.max(0,points-XP_PER_DAY);
+      lastCompletedDay=null;$('reward').classList.remove('show');
     }
     recalcLevel();
-  } else {
-    task.done = checked;
-  }
-
+  } else {task.done=checked;}
   updateAll();
 }
 
-function deleteTask(i) {
-  const task = tasks[i];
-  if (!task) return;
-  if (task.xpAwarded) {
-    points = Math.max(0, points - XP_PER_TASK);
-  }
-  const today = localResetHour();
-  // Roll back daily completion bonus if it was the last task
-  if (lastCompletedDay === today) {
-    const wouldRemain = tasks.filter((t, idx) => idx !== i && !t.missed &&
-      (t.type === 'daily' || (t.type === 'scheduled' && t.date === today)));
-    if (wouldRemain.length === 0 || !wouldRemain.every(t => t.done)) {
-      streak = Math.max(0, streak - 1);
-      points = Math.max(0, points - XP_PER_DAY);
-      lastCompletedDay = null;
-      $('reward').classList.remove('show');
+// ══════════════════════════════════════════════════════════════════
+//  DELETE TASK
+// ══════════════════════════════════════════════════════════════════
+function deleteTask(i){
+  const task=tasks[i];if(!task) return;
+  if(task.xpAwarded) points=Math.max(0,points-XP_PER_TASK);
+  const today=localResetHour();
+  if(lastCompletedDay===today){
+    const remain=tasks.filter((t,idx)=>idx!==i&&!t.missed&&(t.type==='daily'||(t.type==='scheduled'&&t.date===today)));
+    if(!remain.length||!remain.every(t=>t.done)){
+      streak=Math.max(0,streak-1);points=Math.max(0,points-XP_PER_DAY);
+      lastCompletedDay=null;$('reward').classList.remove('show');
     }
   }
-  if (task.id) notifScheduled.delete(task.id);
-  tasks.splice(i, 1);
-  recalcLevel();
-  updateAll();
-  toast('Task removed', 'r');
+  notifScheduled.delete(task.id);
+  tasks.splice(i,1);recalcLevel();updateAll();toast('Task removed','r');
 }
 
-function openEditModal(i) {
-  editIdx = i;
-  const t = tasks[i];
-  $('editTaskIn').value = t.text;
-  $('editTaskType').value = t.type;
-  $('editTaskDate').value = t.date || '';
-  $('editDateWrap').style.display = t.type === 'scheduled' ? 'block' : 'none';
+// ══════════════════════════════════════════════════════════════════
+//  EDIT TASK MODAL
+// ══════════════════════════════════════════════════════════════════
+function openEditTaskModal(i){
+  editTaskIdx=i;const t=tasks[i];
+  $('editTaskIn').value=t.text;
+  $('editTaskType').value=t.type;
+  $('editTaskDate').value=t.date||'';
+  $('editDateWrap').style.display=t.type==='scheduled'?'block':'none';
+  updateFolderSelects();
+  $('editTaskFolder').value=t.folderId||'';
   openModal('editTaskOv');
-  setTimeout(() => $('editTaskIn').focus(), 100);
+  setTimeout(()=>$('editTaskIn').focus(),100);
 }
-
-$('editTaskType').addEventListener('change', () => {
-  $('editDateWrap').style.display = $('editTaskType').value === 'scheduled' ? 'block' : 'none';
+$('editTaskType').addEventListener('change',()=>{
+  $('editDateWrap').style.display=$('editTaskType').value==='scheduled'?'block':'none';
 });
-
-$('editTaskOk').addEventListener('click', () => {
-  const v = $('editTaskIn').value.trim();
-  if (!v || editIdx < 0) return;
-  tasks[editIdx].text = v;
-  tasks[editIdx].type = $('editTaskType').value;
-  tasks[editIdx].date = $('editTaskType').value === 'scheduled' ? ($('editTaskDate').value || null) : null;
-  closeModal('editTaskOv');
-  updateAll();
-  toast('Task updated');
+$('editTaskOk').addEventListener('click',()=>{
+  const v=$('editTaskIn').value.trim();
+  if(!v||editTaskIdx<0) return;
+  const t=tasks[editTaskIdx];
+  t.text=v;t.type=$('editTaskType').value;
+  t.date=$('editTaskType').value==='scheduled'?($('editTaskDate').value||null):null;
+  t.folderId=$('editTaskFolder').value||null;
+  closeModal('editTaskOv');updateAll();toast('Task updated');
 });
-$('editTaskIn').addEventListener('keydown', e => { if (e.key === 'Enter') $('editTaskOk').click(); });
+$('editTaskIn').addEventListener('keydown',e=>{if(e.key==='Enter') $('editTaskOk').click();});
 
 // ══════════════════════════════════════════════════════════════════
-//  REMINDER MODAL
+//  FOLDER MODALS
 // ══════════════════════════════════════════════════════════════════
-async function openRemindModal(i) {
-  remindIdx = i;
-  const t = tasks[i];
-  $('remindTime').value = t.remind || '';
-  $('notifDeny').classList.remove('show');
-
-  if ('Notification' in window && Notification.permission === 'denied') {
-    $('notifDeny').classList.add('show');
-  }
-  openModal('remindOv');
-  setTimeout(() => $('remindTime').focus(), 100);
-}
-
-$('remindOk').addEventListener('click', async () => {
-  if (remindIdx < 0) return;
-  const granted = await requestNotifPermission();
-  if (!granted) {
-    $('notifDeny').classList.add('show');
-    toast('Notification permission denied', 'r');
-    return;
-  }
-  const t = $('remindTime').value;
-  if (!t) { toast('Pick a time first', 'r'); return; }
-  tasks[remindIdx].remind = t;
-  notifScheduled.delete(tasks[remindIdx].id);
-  scheduleNotification(tasks[remindIdx]);
-  closeModal('remindOv');
-  updateAll();
-  toast('Reminder set for ' + t, 'v');
+$('newFolderBtn').addEventListener('click',()=>{
+  $('folderNameIn').value='';$('folderIconIn').value='📁';
+  selectedColor=FOLDER_COLORS[0];
+  buildColorPicker('colorPicker',selectedColor,c=>{selectedColor=c;});
+  openModal('folderOv');setTimeout(()=>$('folderNameIn').focus(),100);
 });
+$('folderOk').addEventListener('click',()=>{
+  const name=$('folderNameIn').value.trim();
+  if(!name){toast('Enter a folder name','r');return;}
+  const icon=$('folderIconIn').value.trim()||'📁';
+  folders.push(normalizeFolder({id:uid(),name,icon,color:selectedColor,open:true,order:folders.length}));
+  closeModal('folderOv');updateAll();toast('Folder created','g');vibrate(20);
+});
+$('folderNameIn').addEventListener('keydown',e=>{if(e.key==='Enter') $('folderOk').click();});
 
-$('remindClear').addEventListener('click', () => {
-  if (remindIdx < 0) return;
-  const id = tasks[remindIdx].id;
-  tasks[remindIdx].remind = null;
-  notifScheduled.delete(id);
-  closeModal('remindOv');
-  updateAll();
-  toast('Reminder cleared');
+function openEditFolderModal(i){
+  editFolderIdx=i;const f=folders[i];
+  $('editFolderNameIn').value=f.name;
+  $('editFolderIconIn').value=f.icon;
+  editSelectedColor=f.color;
+  buildColorPicker('editColorPicker',editSelectedColor,c=>{editSelectedColor=c;});
+  openModal('editFolderOv');setTimeout(()=>$('editFolderNameIn').focus(),100);
+}
+$('editFolderOk').addEventListener('click',()=>{
+  const name=$('editFolderNameIn').value.trim();
+  if(!name||editFolderIdx<0) return;
+  const f=folders[editFolderIdx];
+  f.name=name;f.icon=$('editFolderIconIn').value.trim()||'📁';f.color=editSelectedColor;
+  closeModal('editFolderOv');updateAll();toast('Folder updated','g');
+});
+$('editFolderNameIn').addEventListener('keydown',e=>{if(e.key==='Enter') $('editFolderOk').click();});
+$('deleteFolderBtn').addEventListener('click',()=>{
+  if(editFolderIdx<0) return;
+  const fid=folders[editFolderIdx].id;
+  // Unassign tasks from this folder
+  tasks.forEach(t=>{if(t.folderId===fid) t.folderId=null;});
+  folders.splice(editFolderIdx,1);
+  editFolderIdx=-1;
+  closeModal('editFolderOv');updateAll();toast('Folder deleted','r');
 });
 
 // ══════════════════════════════════════════════════════════════════
 //  ADD TASK
 // ══════════════════════════════════════════════════════════════════
-$('taskIn').addEventListener('input', () => {
-  $('addBtn').classList.toggle('on', !!$('taskIn').value.trim());
-});
-$('taskIn').addEventListener('keydown', e => { if (e.key === 'Enter') $('addBtn').click(); });
-
-$('taskTypeIn').addEventListener('change', () => {
-  $('taskDateIn').classList.toggle('hidden', $('taskTypeIn').value !== 'scheduled');
-});
-
-$('addBtn').addEventListener('click', () => {
-  const text = $('taskIn').value.trim();
-  if (!text) return;
-  const type = $('taskTypeIn').value;
-  const date = type === 'scheduled' ? ($('taskDateIn').value || null) : null;
-  const remind = $('taskTimeIn').value || null;
-
-  // If we're adding a new daily task after completing all today, reset milestone
-  const today = localResetHour();
-  if (lastCompletedDay === today && type === 'daily') {
-    streak = Math.max(0, streak - 1);
-    points = Math.max(0, points - XP_PER_DAY);
-    recalcLevel();
-    lastCompletedDay = null;
-    $('reward').classList.remove('show');
+$('taskIn').addEventListener('input',()=>$('addBtn').classList.toggle('on',!!$('taskIn').value.trim()));
+$('taskIn').addEventListener('keydown',e=>{if(e.key==='Enter') $('addBtn').click();});
+$('taskTypeIn').addEventListener('change',()=>$('taskDateIn').classList.toggle('hidden',$('taskTypeIn').value!=='scheduled'));
+$('addBtn').addEventListener('click',()=>{
+  const text=$('taskIn').value.trim();if(!text) return;
+  const type=$('taskTypeIn').value;
+  const date=type==='scheduled'?($('taskDateIn').value||null):null;
+  const remind=$('taskTimeIn').value||null;
+  const folderId=$('taskFolderIn').value||null;
+  const today=localResetHour();
+  if(lastCompletedDay===today&&type==='daily'){
+    streak=Math.max(0,streak-1);points=Math.max(0,points-XP_PER_DAY);
+    recalcLevel();lastCompletedDay=null;$('reward').classList.remove('show');
   }
+  const newTask=normalizeTask({id:uid(),text,type,date,remind,folderId});
+  tasks.push(newTask);
+  if(remind&&Notification.permission==='granted') scheduleNotification(newTask);
+  $('taskIn').value='';$('addBtn').classList.remove('on');
+  updateAll();vibrate(20);
+});
 
-  tasks.push(normalizeTask({ id: uid(), text, type, date, remind }));
-
-  if (remind && Notification.permission === 'granted') {
-    scheduleNotification(tasks[tasks.length - 1]);
-  }
-
-  $('taskIn').value = '';
-  $('addBtn').classList.remove('on');
-  updateAll();
-  vibrate(20);
+// ══════════════════════════════════════════════════════════════════
+//  REMINDER MODAL
+// ══════════════════════════════════════════════════════════════════
+async function openRemindModal(i){
+  remindTaskIdx=i;$('remindTime').value=tasks[i].remind||'';
+  $('notifDeny').classList.toggle('show','Notification' in window&&Notification.permission==='denied');
+  openModal('remindOv');setTimeout(()=>$('remindTime').focus(),100);
+}
+$('remindOk').addEventListener('click',async()=>{
+  if(remindTaskIdx<0) return;
+  const granted=await requestNotifPermission();
+  if(!granted){$('notifDeny').classList.add('show');toast('Notification permission denied','r');return;}
+  const t=$('remindTime').value;
+  if(!t){toast('Pick a time first','r');return;}
+  tasks[remindTaskIdx].remind=t;
+  notifScheduled.delete(tasks[remindTaskIdx].id);
+  scheduleNotification(tasks[remindTaskIdx]);
+  closeModal('remindOv');updateAll();toast('Reminder set for '+t,'v');
+});
+$('remindClear').addEventListener('click',()=>{
+  if(remindTaskIdx<0) return;
+  notifScheduled.delete(tasks[remindTaskIdx].id);
+  tasks[remindTaskIdx].remind=null;
+  closeModal('remindOv');updateAll();toast('Reminder cleared');
 });
 
 // ══════════════════════════════════════════════════════════════════
 //  TABS
 // ══════════════════════════════════════════════════════════════════
-document.querySelectorAll('.tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    currentTab = tab.dataset.tab;
-    renderTasks();
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');currentTab=tab.dataset.tab;renderTasks();
   });
 });
-
-function updateTabCounts() {
-  const today = localResetHour();
-  $('cntAll').textContent = tasks.filter(t => !(t.type === 'scheduled' && t.date && t.date !== today && !t.missed)).length;
-  $('cntDaily').textContent = tasks.filter(t => t.type === 'daily').length;
-  $('cntOnce').textContent = tasks.filter(t => t.type === 'once').length;
-  $('cntSched').textContent = tasks.filter(t => t.type === 'scheduled').length;
-  $('cntMissed').textContent = tasks.filter(t => t.missed).length;
+function updateTabCounts(){
+  const today=localResetHour();
+  $('cntAll').textContent=tasks.filter(t=>!(t.type==='scheduled'&&t.date&&t.date!==today&&!t.missed)).length;
+  $('cntDaily').textContent=tasks.filter(t=>t.type==='daily').length;
+  $('cntOnce').textContent=tasks.filter(t=>t.type==='once').length;
+  $('cntSched').textContent=tasks.filter(t=>t.type==='scheduled').length;
+  $('cntMissed').textContent=tasks.filter(t=>t.missed).length;
 }
 
 // ══════════════════════════════════════════════════════════════════
 //  STATS + PROGRESS
 // ══════════════════════════════════════════════════════════════════
-function updateStats() {
-  $('sXP').textContent = points;
-  $('sStreak').textContent = streak;
-  $('sLevel').textContent = level;
-  const xpIn = points % XP_PER_LEVEL;
-  const pct = Math.min(100, Math.round((xpIn / XP_PER_LEVEL) * 100));
-  $('xpBar').style.width = pct + '%';
-  $('xpVal').textContent = xpIn + ' / ' + XP_PER_LEVEL + ' XP';
+function updateStats(){
+  $('sXP').textContent=points;$('sStreak').textContent=streak;$('sLevel').textContent=level;
+  const xpIn=points%XP_PER_LEVEL;
+  $('xpBar').style.width=Math.min(100,Math.round(xpIn/XP_PER_LEVEL*100))+'%';
+  $('xpVal').textContent=xpIn+' / '+XP_PER_LEVEL+' XP';
 }
-
-function updateProgress() {
-  const today = localResetHour();
-  const relevant = tasks.filter(t =>
-    !t.missed &&
-    (t.type === 'daily' || t.type === 'once' || (t.type === 'scheduled' && t.date === today))
-  );
-  const total = relevant.length;
-  const comp = relevant.filter(t => t.done).length;
-  const pct = total ? Math.round(comp / total * 100) : 0;
-  $('progBar').style.width = pct + '%';
-  $('pct').textContent = pct + '%';
-  $('reminderBar').style.display = (pct === 100 || total === 0) ? 'none' : 'block';
+function updateProgress(){
+  const today=localResetHour();
+  const rel=tasks.filter(t=>!t.missed&&(t.type==='daily'||t.type==='once'||(t.type==='scheduled'&&t.date===today)));
+  const pct=rel.length?Math.round(rel.filter(t=>t.done).length/rel.length*100):0;
+  $('progBar').style.width=pct+'%';$('pct').textContent=pct+'%';
+  $('reminderBar').style.display=(pct===100||!rel.length)?'none':'block';
 }
-
-function updateAll() {
+function updateAll(){
   recalcLevel();
+  updateFolderSelects();
   renderTasks();
-  updateStats();
-  updateProgress();
-  updateTabCounts();
-  updateStreakWarning();
-  save();
-  scheduleAutoSync();
+  updateStats();updateProgress();updateTabCounts();updateStreakWarning();
+  save();scheduleAutoSync();
 }
-
-// ══════════════════════════════════════════════════════════════════
-//  SORTABLE
-// ══════════════════════════════════════════════════════════════════
-const sortable = new Sortable($('taskList'), {
-  animation: 150,
-  handle: '.drag-handle',
-  draggable: '.task',
-  ghostClass: 'sortable-ghost',
-  chosenClass: 'sortable-chosen',
-  dragClass: 'sortable-drag',
-  forceFallback: true,
-  fallbackOnBody: true,
-  swapThreshold: 0.65,
-  touchStartThreshold: 4,
-  delay: 100,
-  delayOnTouchOnly: true,
-  scroll: true,
-  scrollSensitivity: 80,
-  scrollSpeed: 12,
-  bubbleScroll: true,
-  onStart: () => {
-    document.body.style.userSelect = 'none';
-    document.body.style.webkitUserSelect = 'none';
-    vibrate(30);
-  },
-  onEnd: evt => {
-    document.body.style.userSelect = '';
-    document.body.style.webkitUserSelect = '';
-    if (evt.oldIndex === evt.newIndex) return;
-    const filtered = getFilteredTasks();
-    const movedTask = filtered[evt.oldIndex];
-    if (!movedTask) return;
-    // Reorder in master tasks array
-    const realOld = tasks.indexOf(movedTask);
-    if (realOld === -1) return;
-    const targetTask = filtered[evt.newIndex];
-    const realNew = targetTask ? tasks.indexOf(targetTask) : tasks.length - 1;
-    tasks.splice(realOld, 1);
-    tasks.splice(realNew, 0, movedTask);
-    save();
-    scheduleAutoSync();
-    vibrate(20);
-  }
-});
 
 // ══════════════════════════════════════════════════════════════════
 //  NAME
 // ══════════════════════════════════════════════════════════════════
-function initProfile() {
-  if (!displayName) openModal('nameOv');
-  else { closeModal('nameOv'); $('tagline').textContent = `Welcome back, ${displayName}.`; }
+function initProfile(){
+  if(!displayName) openModal('nameOv');
+  else{closeModal('nameOv');$('tagline').textContent=`Welcome back, ${displayName}.`;}
 }
-
-$('nameOk').addEventListener('click', () => {
-  const v = $('nameIn').value.trim();
-  if (!v) return;
-  displayName = v;
-  $('tagline').textContent = `Welcome back, ${displayName}.`;
-  closeModal('nameOv');
-  save(); updateAll(); toast('Profile initialized', 'g');
+$('nameOk').addEventListener('click',()=>{
+  const v=$('nameIn').value.trim();if(!v) return;
+  displayName=v;$('tagline').textContent=`Welcome back, ${displayName}.`;
+  closeModal('nameOv');save();updateAll();toast('Profile initialized','g');
 });
-$('nameIn').addEventListener('keydown', e => { if (e.key === 'Enter') $('nameOk').click(); });
-
-$('editNameBtn').addEventListener('click', () => {
-  $('editNameIn').value = displayName;
-  openModal('editNameOv');
-  setTimeout(() => $('editNameIn').focus(), 100);
+$('nameIn').addEventListener('keydown',e=>{if(e.key==='Enter') $('nameOk').click();});
+$('editNameBtn').addEventListener('click',()=>{$('editNameIn').value=displayName;openModal('editNameOv');setTimeout(()=>$('editNameIn').focus(),100);});
+$('editNameOk').addEventListener('click',()=>{
+  const v=$('editNameIn').value.trim();if(!v) return;
+  displayName=v;$('tagline').textContent=`Welcome back, ${displayName}.`;
+  closeModal('editNameOv');save();toast('Name updated','g');
 });
-$('editNameOk').addEventListener('click', () => {
-  const v = $('editNameIn').value.trim();
-  if (!v) return;
-  displayName = v;
-  $('tagline').textContent = `Welcome back, ${displayName}.`;
-  closeModal('editNameOv');
-  save(); toast('Name updated', 'g');
-});
-$('editNameIn').addEventListener('keydown', e => { if (e.key === 'Enter') $('editNameOk').click(); });
+$('editNameIn').addEventListener('keydown',e=>{if(e.key==='Enter') $('editNameOk').click();});
 
 // ══════════════════════════════════════════════════════════════════
-//  TOOLBAR BUTTONS
+//  TOOLBAR
 // ══════════════════════════════════════════════════════════════════
-$('themeBtn').addEventListener('click', () => {
-  document.body.dataset.theme = document.body.dataset.theme === 'light' ? 'dark' : 'light';
-  save();
+$('themeBtn').addEventListener('click',()=>{
+  document.body.dataset.theme=document.body.dataset.theme==='light'?'dark':'light';save();
 });
-
-$('genBtn').addEventListener('click', generateSyncCode);
-
-$('syncBtn').addEventListener('click', () => {
-  $('syncIn').value = '';
-  openModal('syncOv');
-  setTimeout(() => $('syncIn').focus(), 100);
+$('genBtn').addEventListener('click',generateSyncCode);
+$('syncBtn').addEventListener('click',()=>{$('syncIn').value='';openModal('syncOv');setTimeout(()=>$('syncIn').focus(),100);});
+$('syncOk').addEventListener('click',()=>importByCode($('syncIn').value));
+$('syncIn').addEventListener('keydown',e=>{if(e.key==='Enter') $('syncOk').click();});
+$('copyBtn').addEventListener('click',()=>{
+  const code=$('scodeVal').textContent;
+  if(navigator.clipboard) navigator.clipboard.writeText(code).then(()=>toast('Code copied!','g'));
+  else toast('Code: '+code,'a');
 });
+$('resetBtn').addEventListener('click',()=>openModal('resetOv'));
+$('resetOk').addEventListener('click',()=>{localStorage.removeItem('lu3');localStorage.removeItem('lu2');localStorage.removeItem('lu');location.reload();});
 
-$('syncOk').addEventListener('click', () => importByCode($('syncIn').value));
-$('syncIn').addEventListener('keydown', e => { if (e.key === 'Enter') $('syncOk').click(); });
-
-$('copyBtn').addEventListener('click', () => {
-  const code = $('scodeVal').textContent;
-  if (navigator.clipboard) navigator.clipboard.writeText(code).then(() => toast('Code copied!', 'g'));
-  else toast('Code: ' + code, 'a');
+// AUTO SYNC TOGGLE
+$('autoSyncToggle').addEventListener('click',()=>{
+  if(!syncCode){toast('Generate or import a sync code first','a');return;}
+  autoSync=!autoSync;$('autoSyncSw').classList.toggle('on',autoSync);save();
+  if(autoSync){setSyncUI('syncing','Syncing...');autoSyncNow();toast('Auto-sync enabled','g');}
+  else{setSyncUI('','Auto-sync off');toast('Auto-sync disabled');}
 });
+function updateAutoSyncUI(){$('autoSyncSw').classList.toggle('on',autoSync);}
 
-$('resetBtn').addEventListener('click', () => openModal('resetOv'));
-$('resetOk').addEventListener('click', () => { localStorage.removeItem('lu2'); location.reload(); });
-
-// ══════════════════════════════════════════════════════════════════
-//  AUTO SYNC TOGGLE
-// ══════════════════════════════════════════════════════════════════
-$('autoSyncToggle').addEventListener('click', () => {
-  if (!syncCode) { toast('Generate or import a sync code first', 'a'); return; }
-  autoSync = !autoSync;
-  $('autoSyncSw').classList.toggle('on', autoSync);
-  save();
-  if (autoSync) {
-    setSyncUI('syncing', 'Syncing...');
-    autoSyncNow();
-    toast('Auto-sync enabled', 'g');
-  } else {
-    setSyncUI('', 'Auto-sync off');
-    toast('Auto-sync disabled');
-  }
-});
-
-function updateAutoSyncUI() {
-  $('autoSyncSw').classList.toggle('on', autoSync);
-}
-
-// ══════════════════════════════════════════════════════════════════
-//  PERIODIC CHECKS  (streak warning, grace, etc.)
-// ══════════════════════════════════════════════════════════════════
-setInterval(() => {
-  dailyReset();
-  updateStreakWarning();
-}, 60000); // check every minute
+// PERIODIC
+setInterval(()=>{dailyReset();updateStreakWarning();},60000);
 
 // ══════════════════════════════════════════════════════════════════
 //  BOOT
@@ -1615,7 +1432,7 @@ dailyReset();
 recalcLevel();
 updateAll();
 updateAutoSyncUI();
-if (autoSync && syncCode) setSyncUI('ok', '✓ Auto-sync active');
+if(autoSync&&syncCode) setSyncUI('ok','✓ Auto-sync active');
 rescheduleAllNotifications();
 </script>
 </body>
